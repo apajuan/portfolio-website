@@ -129,8 +129,7 @@
     try { stored = localStorage.getItem('apa-theme'); } catch (e) {}
     var theme = stored;
     if (theme !== 'light' && theme !== 'dark') {
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      theme = prefersDark ? 'dark' : 'light';
+      theme = 'light';
     }
     applyTheme(theme);
 
