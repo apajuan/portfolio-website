@@ -23,7 +23,7 @@
       ],
       outcomes: [
         'Validated a customer billing/invoicing reconfiguration impacting ~800 retail stores nationwide via 1,000+ test cases, surfacing multiple release-blocking defects resolved before go-live.',
-        'Ran regression testing (200+ test cases) on an Android OS upgrade deployed across hundreds of field devices, catching a critical blocking defect that kept a faulty release out of production logistics.'
+        'Ran regression testing (200+ test cases) on an Android OS upgrade deployed across hundreds of field devices nationally, catching a critical blocking defect that kept a faulty release out of production logistics.'
       ],
       stack: ['Business Analysis', 'Requirements Elicitation', 'FSD', 'As-Is/To-Be Mapping', 'Jira', 'draw.io', 'Excel', 'UAT', 'Defect Management'],
       repoLink: null
@@ -33,7 +33,7 @@
       org: 'Self-initiated · freelance', year: '2023–25',
       role: 'Builder', confidential: false, terminal: true,
       tags: ['Automation', 'QA/Validation', 'Python', 'CLI', 'Google Speech-to-Text', 'AI tooling', 'Process Improvement'],
-      problem: 'Managing subtitle-timing progress and quality across 40+ videos per project by hand was slow and error-prone — and I wanted to know whether AI could accelerate the first draft.',
+      problem: 'Managing subtitle-timing progress and quality across 50+ videos per project by hand was slow and error-prone — and I wanted to know whether AI could accelerate the first draft.',
       contribution: 'I built the tooling myself to solve a real bottleneck in my freelance localization work (1M+ content views sustained over several years), then evaluated an AI-assisted approach and made a clear-eyed call on its fitness.',
       outcomeSummary: 'A command-line dashboard with automated .ass quality checks and one-click packaging — and a working but deliberately shelved AI drafting prototype, kept out of production after rigorous accuracy evaluation.',
       approach: [
@@ -41,7 +41,7 @@
         { label: 'AI-assisted drafting prototype', body: 'Prototyped a tool integrating Google’s speech-to-text API to auto-generate .ass drafts for human review. I present this as an exploration: it proved out API integration, AI-assisted automation, and end-to-end pipeline design — and after evaluating its accuracy limitations I decided it was not production-ready. Knowing when not to ship is part of the work.' }
       ],
       outcomes: [
-        'Cut manual progress-tracking and QA overhead across 40+ videos per project down to a single command.',
+        'Cut manual progress-tracking and QA overhead across 50+ videos per project down to a single command.',
         'Caught overlong, too-short and malformed lines automatically before delivery, instead of by eye.',
         'Validated an AI drafting pipeline end-to-end, then made a documented decision not to ship it — accuracy below the bar.'
       ],

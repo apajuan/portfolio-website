@@ -1,22 +1,38 @@
-# CODING AGENTS: READ THIS FIRST
+# raphaeldilag.xyz
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Personal portfolio for **Juan Raphael (Apa) Dilag** — a Functional Business Analyst & QA who also ships code. Live at **[raphaeldilag.xyz](https://raphaeldilag.xyz)**.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+Built deliberately as a **lean, dependency-free static site**: plain HTML, CSS, and vanilla JavaScript. No framework, no bundler, no build step, no package manager. Deploy by serving the files.
 
-## What you should do — IMPORTANT
+## Stack
 
-**Read `portfolio-prompt-file/project/Portfolio.dc.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+- `index.html` — all content, statically rendered so the site works without JavaScript and is fully crawlable. Meta/OG/favicon live in the head.
+- `styles.css` — design tokens (`:root` + `[data-theme="light"]`) and every component style.
+- `app.js` — all interactivity (vanilla JS, no dependencies). Case-study detail content lives in a `projects` data array here, keyed by id; static cards link to it via `data-id`.
+- `documents/` — résumé, certifications, and CV PDFs served alongside the site. Must ship with any deploy.
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+## Features
 
-## About the design files
+- **Theme toggle** — dark-first with a light mode; respects `prefers-color-scheme` and persists to `localStorage`.
+- **Animated hero canvas** — two modes (flow field / Game of Life), persisted and automatically disabled under `prefers-reduced-motion`.
+- **Filterable projects** — skill tags filter the project grid; cards open into a reusable case-study detail overlay (Esc closes, body scroll locks).
+- **Accessible** — WCAG AA contrast, semantic HTML, keyboard navigation, alt text, and `prefers-reduced-motion` honored throughout.
+- **Typography** — Hanken Grotesk (body/headings) + IBM Plex Mono (labels, metadata, tags), loaded from Google Fonts.
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## Run locally
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+No build step. Either open `index.html` directly, or serve the folder:
 
-## Bundle contents
+```bash
+python3 -m http.server
+# then visit http://localhost:8000
+```
 
-- `portfolio-prompt-file/README.md` — this file
-- `portfolio-prompt-file/project/` — the `Portfolio prompt file` project files (HTML prototypes, assets, components)
+## Deploy
+
+Serve the static files behind any host or CDN (the site is deployed on Vercel with Vercel Web Analytics). Ensure `index.html`, `styles.css`, `app.js`, and the `documents/` folder are all included.
+
+## Contact
+
+- Email — [juanraphaeldilag@gmail.com](mailto:juanraphaeldilag@gmail.com)
+- GitHub — [github.com/apajuan](https://github.com/apajuan)
