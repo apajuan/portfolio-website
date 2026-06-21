@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121512; --bg2:#171c17; --bg3:#1d231d; --line:#232a23; --line2:#2c342c;
+    --text:#e8ece7; --muted:#aab2a8; --faint:#6e786c;
+    --accent:#7fb487; --accentSoft:rgba(127,180,135,0.12); --accentInk:#0c100c;
+    --shadow:rgba(0,0,0,0.32);
+  }
+  [data-theme="light"]{
+    --bg:#f3f5f1; --bg2:#ffffff; --bg3:#eef1ec; --line:#e2e6dd; --line2:#d4dacf;
+    --text:#161a15; --muted:#4f5a4c; --faint:#8a9486;
+    --accent:#3c7a4a; --accentSoft:rgba(60,122,74,0.10); --accentInk:#ffffff;
+    --shadow:rgba(0,0,0,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  ::selection{background:var(--accentSoft);}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  a{color:inherit;}
+  *:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" data-theme="dark" style="background:var(--bg); color:var(--text); font-family:'Hanken Grotesk',sans-serif; min-height:100vh; -webkit-font-smoothing:antialiased; scroll-padding-top:80px;">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);">
+    <nav style="max-width:1200px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between;">
+      <a href="#top" style="text-decoration:none; font-weight:700; font-size:16px; letter-spacing:-0.01em;">Apa Dilag<span style="color:var(--accent);">.</span></a>
+      <div style="display:flex; align-items:center; gap:28px;">
+        <a href="#skills" style="text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted);">Skills</a>
+        <a href="#projects" style="text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted);">Projects</a>
+        <a href="#experience" style="text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted);">Experience</a>
+        <a href="#about" style="text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted);">About</a>
+        <button onClick="{{ toggleTheme }}" aria-label="Toggle color theme" style="background:transparent; border:1px solid var(--line2); color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12px; padding:7px 12px; border-radius:3px; cursor:pointer;">{{ themeLabel }}</button>
+        <a href="resume.pdf" download style="text-decoration:none; background:var(--accent); color:var(--accentInk); font-weight:600; font-size:14px; padding:9px 16px; border-radius:3px;">Résumé ↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" style="max-width:1200px; margin:0 auto; padding:0 32px;">
+
+    <!-- ============ HERO ============ -->
+    <section style="position:relative; padding:96px 0 72px;">
+      <canvas ref="{{ bgRef }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block; pointer-events:none;"></canvas>
+      <div aria-hidden="true" style="position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg, transparent 42%, var(--bg) 100%);"></div>
+
+      <div role="group" aria-label="Hero background animation" style="position:absolute; top:38px; right:0; z-index:3; display:flex; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--faint);">Background</span>
+        <div style="display:flex; border:1px solid var(--line2); border-radius:4px; overflow:hidden; backdrop-filter:blur(6px);">
+          <button onClick="{{ setFlow }}" aria-pressed="{{ bgIsFlow }}" title="Flow field" style="border:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 14px; background:{{ flowBtnBg }}; color:{{ flowBtnColor }};">Flow</button>
+          <button onClick="{{ setLife }}" aria-pressed="{{ bgIsLife }}" title="Game of Life" style="border:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12px; padding:8px 14px; background:{{ lifeBtnBg }}; color:{{ lifeBtnColor }};">Life</button>
+        </div>
+      </div>
+
+      <div style="position:relative; z-index:2;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:var(--accent); margin-bottom:26px;">Functional Business Analyst</div>
+      <h1 style="font-size:clamp(40px,7vw,76px); line-height:1.0; font-weight:800; letter-spacing:-0.03em; margin:0; max-width:14ch;">Juan Raphael Dilag</h1>
+      <p style="font-size:clamp(20px,2.6vw,26px); line-height:1.42; color:var(--text); max-width:30ch; margin:30px 0 0; font-weight:600;">I turn business needs into functional specs — then prove the systems that ship with structured QA.</p>
+      <p style="font-size:17px; line-height:1.65; color:var(--muted); max-width:60ch; margin:20px 0 0;">A BA who can also read the architecture. Enterprise BA &amp; QA work, a self-built CLI quality tool, and a disaster-response system delivered for a real city government office.</p>
+
+      <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:40px;">
+        <a href="#projects" style="text-decoration:none; background:var(--accent); color:var(--accentInk); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">View projects</a>
+        <a href="resume.pdf" download style="text-decoration:none; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">Download résumé ↓</a>
+        <a href="https://github.com/apajuan" target="_blank" rel="noopener" style="text-decoration:none; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">GitHub</a>
+        <a href="mailto:juanraphaeldilag@gmail.com" style="text-decoration:none; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">Email</a>
+      </div>
+
+      <!-- profile record -->
+      <div style="margin-top:56px; border:1px solid var(--line); border-radius:4px; background:var(--bg2); font-family:'IBM Plex Mono',monospace; font-size:13.5px; max-width:780px;">
+        <div style="display:grid; grid-template-columns:150px 1fr; border-bottom:1px solid var(--line);"><div style="padding:14px 20px; color:var(--faint); border-right:1px solid var(--line);">role</div><div style="padding:14px 20px; color:var(--text);">Functional BA · QA · also ships code</div></div>
+        <div style="display:grid; grid-template-columns:150px 1fr; border-bottom:1px solid var(--line);"><div style="padding:14px 20px; color:var(--faint); border-right:1px solid var(--line);">based in</div><div style="padding:14px 20px; color:var(--text);">Calamba City, Laguna · Philippines</div></div>
+        <div style="display:grid; grid-template-columns:150px 1fr; border-bottom:1px solid var(--line);"><div style="padding:14px 20px; color:var(--faint); border-right:1px solid var(--line);">education</div><div style="padding:14px 20px; color:var(--text);">BSIT, Cybersecurity · Mapúa MCL · grad 2026</div></div>
+        <div style="display:grid; grid-template-columns:150px 1fr;"><div style="padding:14px 20px; color:var(--faint); border-right:1px solid var(--line);">status</div><div style="padding:14px 20px; color:var(--accent);">● Final-year student — open to opportunities</div></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" style="padding:64px 0; border-top:1px solid var(--line);">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:44px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">01</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0;">Skills &amp; competencies</h2>
+      </div>
+      <p style="font-size:16px; color:var(--muted); max-width:62ch; margin:-28px 0 44px 45px; line-height:1.6;">No proficiency bars or invented percentages — just the work I actually do, grouped by discipline. Click a group to see the projects that prove it.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden;">
+        <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="5">
+          <div style="background:var(--bg2); padding:28px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+              <h3 style="font-size:18px; font-weight:700; margin:0;">{{ g.name }}</h3>
+              <sc-if value="{{ g.filterTag }}" hint-placeholder-val="BA">
+                <button onClick="{{ g.explore }}" style="background:transparent; border:none; color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:12px; cursor:pointer; padding:0;">→ projects</button>
+              </sc-if>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="6">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--muted); background:var(--bg3); border:1px solid var(--line2); padding:6px 11px; border-radius:3px;">{{ s }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" style="padding:64px 0; border-top:1px solid var(--line);">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:18px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">02</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0;">Selected work</h2>
+      </div>
+      <p style="font-size:16px; color:var(--muted); max-width:62ch; margin:0 0 32px 45px; line-height:1.6;">Five projects across business analysis, QA, automation, civic tech and hardware. Filter by discipline; open any card for the full case study.</p>
+
+      <!-- tag filter -->
+      <div role="group" aria-label="Filter projects by tag" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px;">
+        <sc-for list="{{ filterTags }}" as="t" hint-placeholder-count="7">
+          <button onClick="{{ t.select }}" aria-pressed="{{ t.active }}" style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; padding:8px 14px; border-radius:3px; cursor:pointer; border:1px solid {{ t.borderColor }}; background:{{ t.bg }}; color:{{ t.color }};">{{ t.label }}</button>
+        </sc-for>
+      </div>
+
+      <!-- card grid -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:20px;">
+        <sc-for list="{{ visibleProjects }}" as="p" hint-placeholder-count="5">
+          <article onClick="{{ p.open }}" tabindex="0" onKeyDown="{{ p.keyOpen }}" role="button" aria-label="{{ p.ariaLabel }}" style="background:var(--bg2); border:1px solid var(--line); border-radius:5px; padding:26px; cursor:pointer; display:flex; flex-direction:column; gap:16px; transition:border-color .18s, transform .18s, box-shadow .18s; min-height:260px;" style-hover="background:var(--bg2); border:1px solid var(--accent); border-radius:5px; padding:26px; cursor:pointer; display:flex; flex-direction:column; gap:16px; transform:translateY(-3px); box-shadow:0 10px 30px var(--shadow); min-height:260px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent);">{{ p.num }}</span>
+              <sc-if value="{{ p.confidential }}" hint-placeholder-val="{{ true }}">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); border:1px solid var(--line2); padding:4px 8px; border-radius:3px;">Confidential · NDA</span>
+              </sc-if>
+            </div>
+            <div style="flex:1;">
+              <h3 style="font-size:21px; font-weight:700; line-height:1.2; margin:0 0 6px; letter-spacing:-0.01em;">{{ p.title }}</h3>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--faint); margin-bottom:14px;">{{ p.org }} · {{ p.year }}</div>
+              <p style="font-size:15px; line-height:1.6; color:var(--muted); margin:0;">{{ p.blurb }}</p>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <sc-for list="{{ p.cardTags }}" as="tg" hint-placeholder-count="3">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); background:var(--bg3); padding:4px 9px; border-radius:3px;">{{ tg }}</span>
+              </sc-for>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--accent); margin-top:2px;">Open case study →</div>
+          </article>
+        </sc-for>
+      </div>
+
+      <!-- side & entrepreneurial -->
+      <div style="margin-top:44px; border:1px dashed var(--line2); border-radius:5px; background:var(--bg2); padding:30px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--faint); margin-bottom:18px;">Also — side &amp; entrepreneurial</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px;">
+          <div>
+            <h4 style="font-size:16px; font-weight:700; margin:0 0 8px;">Community game concept (Roblox)</h4>
+            <p style="font-size:14.5px; line-height:1.6; color:var(--muted); margin:0;">A tycoon/simulator aimed at the Filipino community — full market analysis, player-archetype and mechanics design, and a tight-budget monetization plan. Product and market thinking, end to end.</p>
+          </div>
+          <div>
+            <h4 style="font-size:16px; font-weight:700; margin:0 0 8px;">Food business &amp; pop-ups</h4>
+            <p style="font-size:14.5px; line-height:1.6; color:var(--muted); margin:0;">Running a small food business and organizing pop-up events — sourcing, ops, and the unglamorous logistics of getting something real out the door.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" style="padding:64px 0; border-top:1px solid var(--line);">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:44px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">03</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0;">Experience</h2>
+      </div>
+      <ol style="list-style:none; margin:0; padding:0;">
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="4">
+          <li style="display:grid; grid-template-columns:200px 1fr; gap:28px; padding:26px 0; border-top:1px solid var(--line);">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--faint); padding-top:3px;">{{ e.period }}</div>
+            <div>
+              <h3 style="font-size:18px; font-weight:700; margin:0 0 4px;">{{ e.role }}</h3>
+              <div style="font-size:14.5px; color:var(--muted); margin-bottom:10px;">{{ e.org }}</div>
+              <p style="font-size:15px; line-height:1.6; color:var(--muted); margin:0; max-width:64ch;">{{ e.note }}</p>
+            </div>
+          </li>
+        </sc-for>
+      </ol>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:36px; padding-top:28px; border-top:1px solid var(--line);">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); align-self:center; margin-right:6px;">Honors &amp; certs</span>
+        <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="4">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text); background:var(--bg2); border:1px solid var(--line2); padding:7px 12px; border-radius:3px;">{{ c }}</span>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" style="padding:64px 0; border-top:1px solid var(--line);">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:44px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">04</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0;">About</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:56px; align-items:start;">
+        <div style="font-size:17px; line-height:1.72; color:var(--text);">
+          <p style="margin:0 0 18px;">I spent four years as a freelance technical editor and subtitle localizer for international clients — work that sustained more than a million content views and, less visibly, taught me to care about defects. When a single mistimed line is multiplied across an audience that size, "good enough" stops being good enough. That's where my instinct for QA came from, long before it had a job title.</p>
+          <p style="margin:0 0 18px;">Now I'm a final-year BSIT (Cybersecurity) student at Mapúa Malayan Colleges Laguna, working as a Functional Business Analyst. I like the part of the job most people skip: sitting with business users until the actual requirement is on the table, mapping how a process really works versus how people think it works, and writing it down precisely enough that engineers and auditors can both trust it.</p>
+          <p style="margin:0;">Outside coursework I contribute to <strong style="font-weight:600;">BetterGov.ph</strong>, building out the Calamba City transparency portal. I work on it because I care about how Philippine local government serves people — not because it looks good on a page. I'm looking for a role where I can keep living on the line between business and engineering: business analysis, QA, or systems work with real stakes.</p>
+        </div>
+        <aside style="border:1px solid var(--line); border-radius:4px; background:var(--bg2); padding:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--faint); margin-bottom:16px;">At a glance</div>
+          <dl style="margin:0; font-size:14.5px; line-height:1.5;">
+            <div style="padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;"><dt style="color:var(--muted);">Location</dt><dd style="margin:0; text-align:right;">Calamba, Laguna PH</dd></div>
+            <div style="padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;"><dt style="color:var(--muted);">Degree</dt><dd style="margin:0; text-align:right;">BSIT Cybersecurity</dd></div>
+            <div style="padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;"><dt style="color:var(--muted);">English</dt><dd style="margin:0; text-align:right;">TOEIC 990</dd></div>
+            <div style="padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;"><dt style="color:var(--muted);">Filipino</dt><dd style="margin:0; text-align:right;">Native</dd></div>
+            <div style="padding:12px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px;"><dt style="color:var(--muted);">Civic tech</dt><dd style="margin:0; text-align:right;">BetterGov.ph</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ CONTACT / FOOTER ============ -->
+  <footer id="contact" style="border-top:1px solid var(--line); background:var(--bg2); margin-top:32px;">
+    <div style="max-width:1200px; margin:0 auto; padding:72px 32px 40px;">
+      <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:28px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">05</span>
+        <h2 style="font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0;">Let's talk</h2>
+      </div>
+      <p style="font-size:18px; color:var(--muted); max-width:52ch; margin:0 0 36px 45px; line-height:1.6;">Hiring, a question about the work, or a civic-tech project — the inbox is open. Start with the résumé if you're short on time.</p>
+
+      <div style="display:flex; flex-wrap:wrap; gap:12px; margin-left:45px;">
+        <a href="mailto:juanraphaeldilag@gmail.com" style="text-decoration:none; background:var(--accent); color:var(--accentInk); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">juanraphaeldilag@gmail.com</a>
+        <a href="resume.pdf" download style="text-decoration:none; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">Download résumé ↓</a>
+        <a href="https://github.com/apajuan" target="_blank" rel="noopener" style="text-decoration:none; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:13px 22px; border-radius:3px;">github.com/apajuan</a>
+        <span title="LinkedIn URL — to be added" style="border:1px dashed var(--line2); color:var(--faint); font-family:'IBM Plex Mono',monospace; font-size:13px; padding:13px 18px; border-radius:3px;">LinkedIn — add URL</span>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; margin-top:64px; padding-top:24px; border-top:1px solid var(--line); font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--faint);">
+        <span>© 2026 Juan Raphael A. Dilag · raphaeldilag.xyz</span>
+        <span>Calamba City, Laguna · Philippines</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ QUICK-LOOK MODAL ============ -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" role="dialog" aria-modal="true" aria-label="{{ selected.title }}" style="position:fixed; inset:0; z-index:100; background:rgba(8,10,8,0.62); backdrop-filter:blur(4px); display:flex; align-items:flex-start; justify-content:center; overflow-y:auto; padding:48px 24px;">
+      <div onClick="{{ stop }}" style="background:var(--bg); border:1px solid var(--line2); border-radius:6px; max-width:760px; width:100%; box-shadow:0 24px 70px rgba(0,0,0,0.5);">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:28px 32px 0;">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent);">{{ selected.num }}</span>
+              <sc-if value="{{ selected.confidential }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); border:1px solid var(--line2); padding:4px 8px; border-radius:3px;">Confidential · NDA — details generalized</span>
+              </sc-if>
+            </div>
+            <h3 style="font-size:26px; font-weight:800; letter-spacing:-0.02em; margin:0 0 6px;">{{ selected.title }}</h3>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--faint);">{{ selected.role }} · {{ selected.org }} · {{ selected.year }}</div>
+          </div>
+          <button onClick="{{ closeModal }}" aria-label="Close" style="background:transparent; border:1px solid var(--line2); color:var(--muted); font-size:18px; width:34px; height:34px; border-radius:3px; cursor:pointer; flex:none; line-height:1;">×</button>
+        </div>
+        <div style="padding:24px 32px 8px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Problem</div>
+          <p style="font-size:15.5px; line-height:1.62; color:var(--text); margin:0 0 22px;">{{ selected.problem }}</p>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;">Outcome</div>
+          <p style="font-size:15.5px; line-height:1.62; color:var(--text); margin:0 0 22px;">{{ selected.outcomeSummary }}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+            <sc-for list="{{ selected.tags }}" as="tg" hint-placeholder-count="4">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); background:var(--bg3); padding:5px 10px; border-radius:3px;">{{ tg }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; padding:20px 32px 28px;">
+          <button onClick="{{ openDetail }}" style="background:var(--accent); color:var(--accentInk); border:none; font-weight:600; font-size:15px; padding:12px 20px; border-radius:3px; cursor:pointer; font-family:'Hanken Grotesk',sans-serif;">Open full case study →</button>
+          <button onClick="{{ closeModal }}" style="background:transparent; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:12px 20px; border-radius:3px; cursor:pointer; font-family:'Hanken Grotesk',sans-serif;">Close</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ FULL CASE-STUDY DETAIL ============ -->
+  <sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="{{ selected.title }} case study" style="position:fixed; inset:0; z-index:110; background:var(--bg); overflow-y:auto;">
+      <div style="position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);">
+        <div style="max-width:860px; margin:0 auto; padding:0 32px; height:60px; display:flex; align-items:center; justify-content:space-between;">
+          <button onClick="{{ closeDetail }}" style="background:transparent; border:none; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:13px; cursor:pointer; padding:0;">← Back to projects</button>
+          <a href="resume.pdf" download style="text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">Résumé ↓</a>
+        </div>
+      </div>
+
+      <article style="max-width:860px; margin:0 auto; padding:56px 32px 96px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);">{{ selected.num }}</span>
+          <sc-if value="{{ selected.confidential }}" hint-placeholder-val="{{ false }}">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); border:1px solid var(--line2); padding:5px 10px; border-radius:3px;">Confidential · NDA — details generalized</span>
+          </sc-if>
+        </div>
+        <h1 style="font-size:clamp(32px,5vw,52px); font-weight:800; letter-spacing:-0.025em; line-height:1.04; margin:0 0 18px;">{{ selected.title }}</h1>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--muted); margin-bottom:28px;">{{ selected.role }} · {{ selected.org }} · {{ selected.year }}</div>
+        <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:44px;">
+          <sc-for list="{{ selected.tags }}" as="tg" hint-placeholder-count="5">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); background:var(--bg2); border:1px solid var(--line2); padding:6px 11px; border-radius:3px;">{{ tg }}</span>
+          </sc-for>
+        </div>
+
+        <!-- earned terminal block for CLI project -->
+        <sc-if value="{{ selectedTerminal }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid var(--line2); border-radius:6px; overflow:hidden; margin-bottom:48px; background:#0c0f0c; box-shadow:0 12px 40px var(--shadow);" data-reveal>
+            <div style="display:flex; align-items:center; gap:8px; padding:11px 16px; background:#15191500; border-bottom:1px solid #1f261f;">
+              <span style="width:11px; height:11px; border-radius:50%; background:#3a423a;"></span>
+              <span style="width:11px; height:11px; border-radius:50%; background:#3a423a;"></span>
+              <span style="width:11px; height:11px; border-radius:50%; background:#3a423a;"></span>
+              <span style="margin-left:8px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6e786c;">subqa — project dashboard</span>
+            </div>
+            <pre style="margin:0; padding:22px 20px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; line-height:1.7; color:#cdd6cb; overflow-x:auto;"><span style="color:#7fb487;">$</span> subqa status --project ep_2026
+<span style="color:#6e786c;">────────────────────────────────────────────</span>
+ PROJECT ep_2026          43 videos       <span style="color:#7fb487;">87% complete</span>
+<span style="color:#6e786c;">────────────────────────────────────────────</span>
+ ep_01.ass   <span style="color:#7fb487;">✓ pass</span>     312 lines    0 issues
+ ep_02.ass   <span style="color:#7fb487;">✓ pass</span>     298 lines    0 issues
+ ep_17.ass   <span style="color:#e0a64d;">! review</span>   341 lines    3 overlong
+ ep_22.ass   <span style="color:#d9706b;">✗ fail</span>     —            malformed timestamp
+ ...
+<span style="color:#6e786c;">────────────────────────────────────────────</span>
+ QA SUITE     1,284 lines checked   <span style="color:#e0a64d;">11 flagged</span>   <span style="color:#d9706b;">2 errors</span>
+<span style="color:#7fb487;">$</span> subqa package --zip --draft-email
+ ✓ deliverables.zip written (43 files)
+ ✓ client email drafted with completion stats</pre>
+          </div>
+        </sc-if>
+
+        <div style="display:flex; flex-direction:column; gap:40px;">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:12px;">Problem</div>
+            <p style="font-size:18px; line-height:1.7; color:var(--text); margin:0;">{{ selected.problem }}</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:12px;">My role</div>
+            <p style="font-size:18px; line-height:1.7; color:var(--text); margin:0;">{{ selected.contribution }}</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;">Approach</div>
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <sc-for list="{{ selected.approach }}" as="blk" hint-placeholder-count="2">
+                <div style="border-left:2px solid var(--line2); padding-left:20px;">
+                  <h3 style="font-size:16px; font-weight:700; margin:0 0 6px;">{{ blk.label }}</h3>
+                  <p style="font-size:16px; line-height:1.66; color:var(--muted); margin:0;">{{ blk.body }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;">Outcome</div>
+            <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;">
+              <sc-for list="{{ selected.outcomes }}" as="o" hint-placeholder-count="2">
+                <li style="font-size:17px; line-height:1.66; color:var(--text); padding-left:24px; position:relative;"><span style="position:absolute; left:0; top:1px; color:var(--accent);">→</span>{{ o }}</li>
+              </sc-for>
+            </ul>
+          </div>
+          <div style="border-top:1px solid var(--line); padding-top:28px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--faint); margin-bottom:14px;">Stack &amp; methods</div>
+            <div style="display:flex; flex-wrap:wrap; gap:7px;">
+              <sc-for list="{{ selected.stack }}" as="st" hint-placeholder-count="6">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text); background:var(--bg2); border:1px solid var(--line2); padding:7px 12px; border-radius:3px;">{{ st }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ selected.repoLink }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ selected.repoLink }}" target="_blank" rel="noopener" style="display:inline-block; margin-top:24px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent); border:1px solid var(--line2); padding:10px 16px; border-radius:3px;">View on GitHub ↗</a>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="margin-top:56px; padding-top:28px; border-top:1px solid var(--line);">
+          <button onClick="{{ closeDetail }}" style="background:transparent; border:1px solid var(--line2); color:var(--text); font-weight:600; font-size:15px; padding:12px 20px; border-radius:3px; cursor:pointer; font-family:'Hanken Grotesk',sans-serif;">← Back to all projects</button>
+        </div>
+      </article>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:820}}">
+class Component extends DCLogic {
+  state = { theme: 'dark', filter: 'All', modalId: null, detailId: null, bgMode: 'flow' };
+  root = React.createRef();
+  bgRef = React.createRef();
+
+  componentDidMount() {
+    try {
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      this.setState({ theme: prefersLight ? 'light' : 'dark' });
+    } catch (e) {}
+    this._onKey = (ev) => {
+      if (ev.key === 'Escape') {
+        if (this.state.detailId) this.setState({ detailId: null });
+        else if (this.state.modalId) this.setState({ modalId: null });
+      }
+    };
+    window.addEventListener('keydown', this._onKey);
+    this._lastTheme = this.state.theme;
+    this._lastDetail = this.state.detailId;
+    this._applyTheme();
+    this._observeReveals();
+
+    try { const m = localStorage.getItem('apa-bg'); if (m === 'flow' || m === 'life') this.setState({ bgMode: m }); } catch (e) {}
+    this._reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._lastBgMode = this.state.bgMode;
+    this._onBgResize = () => this._setupBg();
+    window.addEventListener('resize', this._onBgResize);
+    this._setupBg();
+    this._startBg();
+  }
+  componentDidUpdate() {
+    if (this._lastTheme !== this.state.theme) {
+      this._lastTheme = this.state.theme;
+      this._applyTheme();
+      const s = this._bg;
+      if (s && this.state.bgMode !== 'life') { s.ctx.fillStyle = this._bgColors().bg; s.ctx.fillRect(0, 0, s.w, s.h); }
+    }
+    if (this._lastBgMode !== this.state.bgMode) {
+      this._lastBgMode = this.state.bgMode;
+      const s = this._bg;
+      if (s) s.ctx.clearRect(0, 0, s.w, s.h);
+      this._setupBg();
+    }
+    const locked = this.state.modalId || this.state.detailId;
+    document.body.style.overflow = locked ? 'hidden' : '';
+    if (this.state.detailId && this._lastDetail !== this.state.detailId) {
+      setTimeout(() => this._observeReveals(), 30);
+    }
+    this._lastDetail = this.state.detailId;
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this._onKey);
+    document.body.style.overflow = '';
+    cancelAnimationFrame(this._bgRaf);
+    window.removeEventListener('resize', this._onBgResize);
+  }
+  setBg(mode) {
+    if (this.state.bgMode === mode) return;
+    try { localStorage.setItem('apa-bg', mode); } catch (e) {}
+    this.setState({ bgMode: mode });
+  }
+  _applyTheme() {
+    const el = this.root && this.root.current;
+    if (el) el.setAttribute('data-theme', this.state.theme);
+  }
+  _observeReveals() {
+    const el = this.root && this.root.current;
+    if (!el || !('IntersectionObserver' in window)) return;
+    const nodes = el.querySelectorAll('[data-reveal]');
+    nodes.forEach(n => {
+      if (n._revInit) return;
+      n._revInit = true;
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(16px)';
+      n.style.transition = 'opacity .6s ease, transform .6s ease';
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    nodes.forEach(n => io.observe(n));
+  }
+
+  // ---------- ANIMATED HERO BACKGROUND ----------
+  _bgColors() {
+    if (this.state.theme === 'light')
+      return { bg: '#f3f5f1', fade: '243,245,241', accent: '60,122,74', flowA: 0.22, lifeA: 0.18, fadeStep: 0.05 };
+    return { bg: '#121512', fade: '18,21,18', accent: '127,180,135', flowA: 0.16, lifeA: 0.13, fadeStep: 0.055 };
+  }
+  _makePerlin(seed) {
+    const perm = Array.from({ length: 256 }, (_, i) => i);
+    let s = seed || 1234;
+    const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    for (let i = 255; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = perm[i]; perm[i] = perm[j]; perm[j] = t; }
+    const p = new Uint8Array(512);
+    for (let i = 0; i < 512; i++) p[i] = perm[i & 255];
+    const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10);
+    const lerp = (a, b, t) => a + t * (b - a);
+    const grad = (h, x, y) => ((h & 1) ? -x : x) + ((h & 2) ? -y : y);
+    return (x, y) => {
+      const X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
+      x -= Math.floor(x); y -= Math.floor(y);
+      const u = fade(x), v = fade(y);
+      const a = p[X] + Y, b = p[X + 1] + Y;
+      return lerp(lerp(grad(p[a], x, y), grad(p[b], x - 1, y), u),
+                  lerp(grad(p[a + 1], x, y - 1), grad(p[b + 1], x - 1, y - 1), u), v);
+    };
+  }
+  _sizeCanvas() {
+    const canvas = this.bgRef.current;
+    if (!canvas) return null;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return null;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this._bg = { ctx, w, h };
+    return this._bg;
+  }
+  _setupBg() {
+    if (!this._sizeCanvas()) return;
+    this._perlin = this._perlin || this._makePerlin(20260620);
+    if (this.state.bgMode === 'life') this._setupLife(); else this._setupFlow();
+  }
+  _heroOnScreen() {
+    const canvas = this.bgRef.current;
+    const sec = canvas ? canvas.parentNode : null;
+    if (!sec) return false;
+    const r = sec.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.bottom > 0 && r.top < vh;
+  }
+  _startBg() {
+    this._bgLast = performance.now();
+    const loop = (now) => {
+      const dt = Math.min(now - this._bgLast, 60);
+      this._bgLast = now;
+      if (this._heroOnScreen()) {
+        if (this.state.bgMode === 'life') this._drawLife(dt); else this._drawFlow(dt);
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    if (this._reduced) {
+      if (this.state.bgMode === 'life') this._drawLife(16); else this._drawFlow(16);
+    } else {
+      this._bgRaf = requestAnimationFrame(loop);
+    }
+  }
+  // flow field
+  _setupFlow() {
+    const s = this._bg; if (!s) return;
+    const count = Math.round((s.w * s.h) / 1500);
+    this._particles = Array.from({ length: count }, () => this._spawn(s));
+    s.ctx.fillStyle = this._bgColors().bg;
+    s.ctx.fillRect(0, 0, s.w, s.h);
+    this._flowT = 0;
+  }
+  _spawn(s) {
+    return { x: Math.random() * s.w, y: Math.random() * s.h, life: 20 + Math.random() * 140 };
+  }
+  _drawFlow(dt) {
+    const s = this._bg; if (!s) return;
+    const ctx = s.ctx, col = this._bgColors();
+    ctx.fillStyle = 'rgba(' + col.fade + ',' + col.fadeStep + ')';
+    ctx.fillRect(0, 0, s.w, s.h);
+    if (this._reduced) return;
+    this._flowT += dt * 0.00004;
+    const scale = 0.0019, speed = dt * 0.045;
+    ctx.lineWidth = 1;
+    for (const pt of this._particles) {
+      const ang = this._perlin(pt.x * scale, pt.y * scale + this._flowT) * Math.PI * 2.2;
+      const nx = pt.x + Math.cos(ang) * speed * 22;
+      const ny = pt.y + Math.sin(ang) * speed * 22;
+      const edge = Math.min(pt.x, pt.y, s.w - pt.x, s.h - pt.y);
+      const fadeIn = Math.max(0, Math.min(1, edge / 70));
+      ctx.strokeStyle = 'rgba(' + col.accent + ',' + (col.flowA * fadeIn) + ')';
+      ctx.beginPath(); ctx.moveTo(pt.x, pt.y); ctx.lineTo(nx, ny); ctx.stroke();
+      pt.x = nx; pt.y = ny; pt.life -= dt * 0.06;
+      if (pt.life <= 0 || pt.x < -5 || pt.y < -5 || pt.x > s.w + 5 || pt.y > s.h + 5) Object.assign(pt, this._spawn(s));
+    }
+  }
+  // game of life
+  _setupLife() {
+    const s = this._bg; if (!s) return;
+    this._cell = 26;
+    this._cols = Math.ceil(s.w / this._cell);
+    this._rows = Math.ceil(s.h / this._cell);
+    const n = this._cols * this._rows;
+    this._grid = new Uint8Array(n);
+    this._alpha = new Float32Array(n);
+    this._seedLife(0.10);
+    this._stepT = 0;
+  }
+  _seedLife(density) {
+    for (let i = 0; i < this._grid.length; i++) this._grid[i] = Math.random() < density ? 1 : 0;
+  }
+  _stepLife() {
+    const C = this._cols, R = this._rows, g = this._grid;
+    const next = new Uint8Array(g.length);
+    let alive = 0;
+    for (let y = 0; y < R; y++) {
+      for (let x = 0; x < C; x++) {
+        let n = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          n += g[((y + dy + R) % R) * C + ((x + dx + C) % C)];
+        }
+        const idx = y * C + x;
+        next[idx] = g[idx] ? (n === 2 || n === 3 ? 1 : 0) : (n === 3 ? 1 : 0);
+        alive += next[idx];
+      }
+    }
+    this._grid = next;
+    if (alive < g.length * 0.03) this._seedLife(0.09);
+  }
+  _drawLife(dt) {
+    const s = this._bg; if (!s) return;
+    const ctx = s.ctx, col = this._bgColors();
+    ctx.clearRect(0, 0, s.w, s.h);
+    if (!this._reduced) {
+      this._stepT += dt;
+      if (this._stepT > 520) { this._stepT = 0; this._stepLife(); }
+    }
+    const cell = this._cell, inset = 5, r = 3;
+    const ease = this._reduced ? 1 : 0.12;
+    for (let y = 0; y < this._rows; y++) {
+      for (let x = 0; x < this._cols; x++) {
+        const idx = y * this._cols + x;
+        const target = this._grid[idx] ? 1 : 0;
+        this._alpha[idx] += (target - this._alpha[idx]) * ease;
+        const a = this._alpha[idx];
+        if (a < 0.01) continue;
+        ctx.fillStyle = 'rgba(' + col.accent + ',' + (a * col.lifeA) + ')';
+        const px = x * cell + inset, py = y * cell + inset, sz = cell - inset * 2;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(px, py, sz, sz, r); else ctx.rect(px, py, sz, sz);
+        ctx.fill();
+      }
+    }
+  }
+
+  get _projects() {
+    return [
+      {
+        id: 'fmcg', num: '01', title: 'Business Analysis & QA Internship',
+        org: 'Major FMCG / food manufacturer · PH', year: '2026',
+        role: 'IT Business Analyst Intern', confidential: true, terminal: false,
+        tags: ['BA','QA','Requirements','FSD','Process Mapping','Jira','draw.io','Excel','UAT','Defect Management'],
+        cardTags: ['BA','QA','FSD','Jira'],
+        blurb: 'Specced and validated production-bound systems for a national distribution network — as a functional BA and, on two projects, a cross-functional QA.',
+        problem: 'Business-critical processes and production systems needed clear functional specification and rigorous validation before rollout across a large-scale national distribution network.',
+        contribution: 'I worked as a functional business analyst and stepped into a cross-functional QA role on two separate production-bound projects, partnering directly with stakeholders and developers.',
+        outcomeSummary: 'Validated a billing/invoicing reconfiguration impacting ~800 retail stores via 1,000+ test cases, and ran regression on an Android upgrade across hundreds of field devices — each surfacing release-blocking defects fixed before go-live.',
+        approach: [
+          { label: 'BA track', body: 'Ran requirements-elicitation sessions with 5+ stakeholders across two departments, mapped As-Is and To-Be process flows in draw.io, and authored a Functional Specification Document for an internal, ISO-aligned quality-audit workflow.' },
+          { label: 'QA track', body: 'Designed and executed test cases in Excel, tracked and managed defects in Jira, and partnered with developers on resolution across two projects: an invoicing/billing reconfiguration and an Android OS upgrade for a field-delivery tablet application.' }
+        ],
+        outcomes: [
+          'Validated a customer billing/invoicing reconfiguration impacting ~800 retail stores nationwide via 1,000+ test cases, surfacing multiple release-blocking defects resolved before go-live.',
+          'Ran regression testing (200+ test cases) on an Android OS upgrade deployed across hundreds of field devices, catching a critical blocking defect that kept a faulty release out of production logistics.'
+        ],
+        stack: ['Business Analysis','Requirements Elicitation','FSD','As-Is/To-Be Mapping','Jira','draw.io','Excel','UAT','Defect Management'],
+        repoLink: null
+      },
+      {
+        id: 'subtitle', num: '02', title: 'Subtitle-Localization Tooling',
+        org: 'Self-initiated · freelance', year: '2023–25',
+        role: 'Builder', confidential: false, terminal: true,
+        tags: ['Automation','QA/Validation','Python','CLI','Google Speech-to-Text','AI tooling','Process Improvement'],
+        cardTags: ['Python','CLI','Automation','AI'],
+        blurb: 'A self-built CLI that tracks subtitle progress across 40+ videos and runs a custom test suite on .ass files — plus an honest AI-drafting experiment I chose not to ship.',
+        problem: 'Managing subtitle-timing progress and quality across 40+ videos per project by hand was slow and error-prone — and I wanted to know whether AI could accelerate the first draft.',
+        contribution: 'I built the tooling myself to solve a real bottleneck in my freelance localization work (1M+ content views sustained over several years), then evaluated an AI-assisted approach and made a clear-eyed call on its fitness.',
+        outcomeSummary: 'A command-line dashboard with automated .ass quality checks and one-click packaging — and a working but deliberately shelved AI drafting prototype, kept out of production after rigorous accuracy evaluation.',
+        approach: [
+          { label: 'CLI progress + QA dashboard', body: 'Built a Python command-line dashboard tracking progress across every video in a project, with automated quality validation on .ass subtitle files — programmatic checks flagging overlong, too-short, and malformed lines, essentially a custom test suite for subtitle quality. Added one-click end-of-project packaging that zips deliverables and auto-drafts the client email with completion statistics.' },
+          { label: 'AI-assisted drafting prototype', body: 'Prototyped a tool integrating Google’s speech-to-text API to auto-generate .ass drafts for human review. I present this as an exploration: it proved out API integration, AI-assisted automation, and end-to-end pipeline design — and after evaluating its accuracy limitations I decided it was not production-ready. Knowing when not to ship is part of the work.' }
+        ],
+        outcomes: [
+          'Cut manual progress-tracking and QA overhead across 40+ videos per project down to a single command.',
+          'Caught overlong, too-short and malformed lines automatically before delivery, instead of by eye.',
+          'Validated an AI drafting pipeline end-to-end, then made a documented decision not to ship it — accuracy below the bar.'
+        ],
+        stack: ['Python','CLI','Automation','QA/Validation','Google Speech-to-Text API','AI tooling','Process Improvement'],
+        repoLink: 'https://github.com/apajuan'
+      },
+      {
+        id: 'capstone', num: '03', title: 'Community-Based Reporting & Response System',
+        org: 'Biñan City CDRRMO · Capstone', year: '2025',
+        role: 'Lead Researcher & Developer', confidential: false, terminal: false,
+        tags: ['BA','System Architecture','Mobile','Web Portal','AES-256/RBAC/MFA','Agile/Scrum','Civic Tech','Security'],
+        cardTags: ['Civic Tech','Architecture','Mobile','Security'],
+        blurb: 'Replaced a city disaster-response office’s manual, verbal-only incident reporting with a live, data-driven, four-layer system — built for a real LGU.',
+        problem: 'The Biñan City CDRRMO relied on manual, verbal-only incident-reporting workflows with no real-time coordination and no data trail.',
+        contribution: 'I led requirements analysis and stakeholder validation, designed the system architecture, and coordinated development across the team.',
+        outcomeSummary: 'A cross-platform system on a four-layer modular architecture that replaced an entirely manual process with live, data-driven incident reporting and dispatch for a real government office.',
+        approach: [
+          { label: 'Architecture & build', body: 'Designed and built a four-layer modular system: a mobile app for geotagged incident reporting and real-time responder coordination; a responder interface; and a centralized web administrative portal for incident validation, resource dispatching, and geographic data analytics.' },
+          { label: 'Security & delivery', body: 'Implemented a Data Privacy Act–compliant security framework (AES-256/SSL encryption, role-based access control, MFA), and delivered the system through one-week Agile Scrum sprints with continuous stakeholder validation.' }
+        ],
+        outcomes: [
+          'Replaced an entirely manual, verbal-only process with a live, data-driven reporting and dispatch system for a real city government office.',
+          'Built in geotagged reporting, real-time responder coordination, and a central portal for validation, dispatch and geographic analytics.',
+          'Shipped a DPA-compliant security framework (AES-256/SSL, RBAC, MFA) from day one.'
+        ],
+        stack: ['Requirements Analysis','Stakeholder Management','System Architecture','Mobile Development','Web Portal','AES-256 / RBAC / MFA','Agile/Scrum'],
+        repoLink: null
+      },
+      {
+        id: 'parking', num: '04', title: 'IoT-Based Smart Parking System',
+        org: 'Academic · hardware build', year: '2024',
+        role: 'Hardware Lead & Full-Stack Developer', confidential: false, terminal: false,
+        tags: ['IoT','Arduino','Wemos R1','RFID','Next.js','Supabase','PostgreSQL','Full-stack'],
+        cardTags: ['IoT','Arduino','Next.js','PostgreSQL'],
+        blurb: 'An end-to-end IoT access-control system: RFID gate control on Arduino hardware, a real-time PostgreSQL backend, and a Next.js monitoring dashboard.',
+        problem: 'Manual parking management with no automated access control and no real-time occupancy data.',
+        contribution: 'I led the hardware and built the full stack — from the microcontroller firmware through the database to the monitoring dashboard.',
+        outcomeSummary: 'A working access-control system spanning microcontrollers, sensors, a real-time database, and a remote dashboard.',
+        approach: [
+          { label: 'Hardware', body: 'Arduino + Wemos R1 microcontrollers interfacing with RFID sensors for gate access control.' },
+          { label: 'Backend & dashboard', body: 'A Supabase/PostgreSQL backend handling real-time logs, automated timestamping and duration calculations, with a Next.js dashboard for remote monitoring and status reporting.' }
+        ],
+        outcomes: [
+          'Automated gate access via RFID, replacing manual control.',
+          'Captured real-time entry/exit logs with automatic timestamping and duration calculation.',
+          'Surfaced live occupancy and status through a remote Next.js dashboard.'
+        ],
+        stack: ['IoT','Arduino','Wemos R1','RFID','Next.js','Supabase','PostgreSQL'],
+        repoLink: 'https://github.com/apajuan'
+      },
+      {
+        id: 'bettergov', num: '05', title: 'BetterGov.ph — Calamba City Portal',
+        org: 'Open-source civic tech', year: '2025–26',
+        role: 'Open-source contributor', confidential: false, terminal: false,
+        tags: ['Civic Tech','Open Source','Front-end','Public Sector','Philippine LGU'],
+        cardTags: ['Civic Tech','Open Source','Front-end'],
+        blurb: 'Building out the Calamba City transparency portal from the BetterGov.ph template — themed to the city’s official branding. A values-driven project, not a résumé trophy.',
+        problem: 'Philippine local government units often lack a clean, consistent transparency presence. BetterGov.ph is a community-maintained answer; the Calamba City portal needed to be built and themed from the project template.',
+        contribution: 'I contribute front-end implementation work to the open-source project, building out the Calamba City portal and theming it to the city’s official branding (Gold, Red, Blue, Grey, White).',
+        outcomeSummary: 'Front-end implementation and theming for a real LGU transparency portal, contributed to a community-maintained open-source project.',
+        approach: [
+          { label: 'Implementation', body: 'Built the Calamba City portal out from the shared project template, implementing pages and components in the front-end stack.' },
+          { label: 'Theming', body: 'Applied the city’s official brand palette — Gold, Red, Blue, Grey and White — consistently across the portal.' }
+        ],
+        outcomes: [
+          'Contributed front-end work to a live, community-maintained civic-tech project.',
+          'Themed the portal to Calamba City’s official branding.',
+          'Did it because Philippine governance and transparency matter to me — the kind of work I want more of.'
+        ],
+        stack: ['Civic Tech','Open Source','Front-end','Philippine LGU','Public-sector Transparency'],
+        repoLink: 'https://github.com/apajuan'
+      }
+    ];
+  }
+
+  renderVals() {
+    const projects = this._projects;
+    const filter = this.state.filter;
+    const allTags = ['All','BA','QA','Automation','IoT','Civic Tech','Security'];
+    const matches = (p) => {
+      if (filter === 'All') return true;
+      if (filter === 'Civic Tech') return p.tags.includes('Civic Tech');
+      return p.tags.includes(filter);
+    };
+    const accent = this.state.theme === 'light' ? '#3c7a4a' : '#7fb487';
+
+    const filterTags = allTags.map(label => {
+      const active = filter === label;
+      return {
+        label, active,
+        select: () => this.setState({ filter: label }),
+        bg: active ? 'var(--accent)' : 'transparent',
+        color: active ? 'var(--accentInk)' : 'var(--muted)',
+        borderColor: active ? 'var(--accent)' : 'var(--line2)'
+      };
+    });
+
+    const visibleProjects = projects.filter(matches).map(p => ({
+      ...p,
+      ariaLabel: 'Open case study: ' + p.title,
+      open: () => this.setState({ modalId: p.id }),
+      keyOpen: (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); this.setState({ modalId: p.id }); } }
+    }));
+
+    const selected = projects.find(p => p.id === (this.state.detailId || this.state.modalId)) || null;
+
+    const skillGroups = [
+      { name: 'Business Analysis', filterTag: 'BA', items: ['Requirements elicitation','As-Is / To-Be mapping','Functional Spec Docs','Use case development','Stakeholder management','Gap analysis'] },
+      { name: 'Quality Assurance', filterTag: 'QA', items: ['Test case design & execution','Functional & regression testing','UAT','Defect tracking & management','Test cycle management'] },
+      { name: 'Tools & Platforms', filterTag: null, items: ['Jira','draw.io','Excel','Salesforce CRM','Office 365','Google Workspace','Git'] },
+      { name: 'Technical', filterTag: null, items: ['Python','SQL','Active Directory & GPO','Windows Server','Linux (Debian/RHEL/Kali)','LAN/WAN & VLANs','Cisco Packet Tracer','VirtualBox','React / React Native','Next.js','Arduino / IoT','Supabase / PostgreSQL'] },
+      { name: 'Languages', filterTag: null, items: ['English — Professional (TOEIC 990)','Filipino / Tagalog — Native'] }
+    ].map(g => ({
+      ...g,
+      explore: g.filterTag ? () => {
+        this.setState({ filter: g.filterTag });
+        const el = (this.root && this.root.current) ? this.root.current.querySelector('#projects') : null;
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+      } : null
+    }));
+
+    const experience = [
+      { period: 'Apr – Jul 2026', role: 'IT Business Analyst Intern', org: 'Major FMCG / food manufacturer · PH', note: 'Functional specification and cross-functional QA on two production-bound projects across a national distribution network. (Under NDA — details generalized.)' },
+      { period: 'Nov 2021 – Dec 2025', role: 'Technical Editor & Content Specialist', org: 'Freelance', note: 'Subtitle localization and technical editing for international clients; 1M+ content views sustained. Where my QA discipline — and my CLI tooling — came from.' },
+      { period: 'Jan – Nov 2024', role: 'Admissions Support Staff (Student Assistant)', org: 'Mapúa Malayan Colleges Laguna', note: 'Supported admissions operations and applicant processing alongside coursework.' },
+      { period: 'Sept 2023', role: 'IT Services Office (ITSO) Assistant', org: 'Mapúa Malayan Colleges Laguna', note: 'One-month contractual role supporting campus IT services.' }
+    ];
+
+    const credentials = ["Dean's List · A.Y. 2022–2025", "President's List · A.Y. 2022–2023", 'CompTIA Tech+', 'Google Cloud Computing Foundations'];
+
+    const bgFlow = this.state.bgMode !== 'life';
+    return {
+      rootRef: this.root,
+      bgRef: this.bgRef,
+      bgIsFlow: bgFlow, bgIsLife: !bgFlow,
+      setFlow: () => this.setBg('flow'),
+      setLife: () => this.setBg('life'),
+      flowBtnBg: bgFlow ? 'var(--accent)' : 'transparent',
+      flowBtnColor: bgFlow ? 'var(--accentInk)' : 'var(--muted)',
+      lifeBtnBg: !bgFlow ? 'var(--accent)' : 'transparent',
+      lifeBtnColor: !bgFlow ? 'var(--accentInk)' : 'var(--muted)',
+      themeLabel: this.state.theme === 'dark' ? 'Light' : 'Dark',
+      toggleTheme: () => this.setState(s => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
+      skillGroups, experience, credentials,
+      filterTags, visibleProjects,
+      modalOpen: !!this.state.modalId && !this.state.detailId,
+      detailOpen: !!this.state.detailId,
+      selected: selected || {},
+      selectedTerminal: !!(selected && selected.terminal),
+      closeModal: () => this.setState({ modalId: null }),
+      openDetail: () => this.setState(s => ({ detailId: s.modalId, modalId: null })),
+      closeDetail: () => this.setState({ detailId: null }),
+      stop: (ev) => ev.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>
