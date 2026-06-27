@@ -233,21 +233,39 @@
     return '' +
       '<div class="terminal" data-reveal>' +
         '<div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
-        '<span class="title">subqa — project dashboard</span></div>' +
-        '<pre><span class="g">$</span> subqa status --project ep_2026\n' +
-'<span class="dim">────────────────────────────────────────────</span>\n' +
-' PROJECT ep_2026          43 videos       <span class="g">87% complete</span>\n' +
-'<span class="dim">────────────────────────────────────────────</span>\n' +
-' ep_01.ass   <span class="g">✓ pass</span>     312 lines    0 issues\n' +
-' ep_02.ass   <span class="g">✓ pass</span>     298 lines    0 issues\n' +
-' ep_17.ass   <span class="warn">! review</span>   341 lines    3 overlong\n' +
-' ep_22.ass   <span class="err">✗ fail</span>     —            malformed timestamp\n' +
-' ...\n' +
-'<span class="dim">────────────────────────────────────────────</span>\n' +
-' QA SUITE     1,284 lines checked   <span class="warn">11 flagged</span>   <span class="err">2 errors</span>\n' +
-'<span class="g">$</span> subqa package --zip --draft-email\n' +
-' ✓ deliverables.zip written (43 files)\n' +
-' ✓ client email drafted with completion stats</pre>' +
+        '<span class="title">manual.py — subtitle QA + progress dashboard</span></div>' +
+        '<pre><span class="g">$</span> python manual.py --watch\n' +
+'file                                               lines  longest maxCPS long short cps&gt; past over untr sty  mp4\n' +
+'<span class="dim">----------------------------------------------------------------------------------------------------------------</span>\n' +
+'ep_2026_v2_14                                         44    8.30s   24.6    2     0    3    1    1    0   1   ok\n' +
+'ep_2026_v1_07                                         29    7.91s   22.1    1     1    2    0    0    0   1   ok\n' +
+'ep_2026_v2_22                                          0    0.00s    0.0    0     0    0    0    0    0   0   <span class="err">NO</span>\n' +
+'ep_2026_v1_03                                         33    6.42s   19.8    0     0    0    0    0    4   1   ok\n' +
+'ep_2026_v2_18                                         27    5.05s   18.3    0     0    0    0    0    0   1   ok\n' +
+'ep_2026_v1_01                                         86    4.13s   17.2    0     0    0    0    0    0   1   ok\n' +
+'ep_2026_v1_11                                         21    4.16s   16.0    0     0    0    0    0    0   1   ok\n' +
+'<span class="dim">  ... and 31 more</span>\n' +
+'\n' +
+'No dialogue:\n' +
+'<span class="dim">  ep_2026_v2_05</span>\n' +
+'<span class="dim">  ep_2026_v2_09</span>\n' +
+'\n' +
+'Styles in use (style: lines / files):\n' +
+"  'Default'              1284 lines   39 files\n" +
+"  'Sign'                   12 lines    2 files\n" +
+'<span class="warn">  files missing the primary style (\'Default\'):</span>\n' +
+'<span class="warn">    ep_2026_v2_30</span>\n' +
+'\n' +
+'Videos:           50\n' +
+'Subtitle files:   41\n' +
+'% Completed:      <span class="g">78.40%</span>\n' +
+'Running duration: 2:03:12\n' +
+'Total duration:   2:35:18\n' +
+'Time left:        0:32:06\n' +
+'Total lines:      1296\n' +
+'<span class="dim">Session: 0:18:00 elapsed, +0:11:40 done -&gt; 0.65x realtime, ETA 0:49:20 (finish ~ 15:11)</span>\n' +
+'\n' +
+'<span class="dim">[watching for changes - Ctrl+C to quit]</span></pre>' +
       '</div>';
   }
 
