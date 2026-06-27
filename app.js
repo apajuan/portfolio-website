@@ -902,11 +902,12 @@
   }
 
   /* =========================================================
-     PACKET NETWORK — decorative "closed private network" in the skills
-     grid. Six hosts (3 + 3) send data packets through a two-switch spine
-     with hop-by-hop routing, switch congestion queues, ACK returns, and
-     the occasional drop + single retransmit. Two-glyph coding: filled
-     square = data out, hollow square = ack back.
+     PACKET NETWORK — decorative "closed private network" banner spanning
+     the full skills grid. Twelve hosts (4 per switch) route packets across
+     a three-switch spine, with an upstream WAN gateway taking the occasional
+     egress flow. Hop-by-hop routing, per-switch congestion queues, ACK
+     returns, and the occasional drop + single retransmit. Two-glyph coding:
+     filled square = data out, hollow square = ack back.
      ========================================================= */
   var SWITCHTIME = 200;                          // ms a switch is busy per packet
 
@@ -927,6 +928,11 @@
   function netRespawn(q) {                         // same path, but this attempt succeeds (no drop)
     return { kind: 'data', way: q.way, seg: 0, t: 0, spd: q.spd, st: 'move', retried: true, alpha: 1, sz: 1, atIndex: 0, atId: null };
   }
+  function spineBetween(switches, i, j) {          // ordered switches from index i to j inclusive
+    var arr = [], step = i <= j ? 1 : -1, k = i;
+    while (true) { arr.push(switches[k]); if (k === j) break; k += step; }
+    return arr;
+  }
 
   function PacketNet(canvas) {
     var self = this;
@@ -934,7 +940,7 @@
     this.reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.packets = [];
     this.spawnCooldown = 350;
-    this.switchFree = { A: 0, B: 0 };              // timestamp each switch is free again
+    this.switchFree = {};                          // timestamp each switch is free again (keyed by id)
     this.bg = null;
     this.last = 0;
     this.size();
@@ -949,19 +955,29 @@
     var ctx = c.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.bg = { ctx: ctx, w: w, h: h };
     this.topo = this.buildTopo(w, h);
+    for (var i = 0; i < this.topo.switches.length; i++) {   // ensure a free-timestamp per switch
+      var id = this.topo.switches[i].id;
+      if (!(id in this.switchFree)) this.switchFree[id] = 0;
+    }
   };
   PacketNet.prototype.buildTopo = function (w, h) {
-    var swA = { x: w * 0.40, y: h * 0.5, id: 'A' };
-    var swB = { x: w * 0.60, y: h * 0.5, id: 'B' };
-    var hosts = [
-      { x: w * 0.09,  y: h * 0.18, sw: 'A' },
-      { x: w * 0.045, y: h * 0.5,  sw: 'A' },
-      { x: w * 0.09,  y: h * 0.82, sw: 'A' },
-      { x: w * 0.91,  y: h * 0.18, sw: 'B' },
-      { x: w * 0.955, y: h * 0.5,  sw: 'B' },
-      { x: w * 0.91,  y: h * 0.82, sw: 'B' }
+    var spineY = h * 0.62;
+    var switches = [
+      { x: w * 0.18, y: spineY, id: 'A' },
+      { x: w * 0.50, y: spineY, id: 'B' },
+      { x: w * 0.82, y: spineY, id: 'C' }
     ];
-    return { swA: swA, swB: swB, sw: { A: swA, B: swB }, hosts: hosts };
+    var centerIdx = 1;
+    var gw = { x: w * 0.50, y: h * 0.18, id: 'GW', gw: true };
+    var hosts = [], topY = h * 0.40, botY = h * 0.86, dx = w * 0.055;
+    for (var i = 0; i < switches.length; i++) {     // 4 hosts per switch: two above, two below
+      var sx = switches[i].x;
+      hosts.push({ x: sx - dx, y: topY, sw: i });
+      hosts.push({ x: sx + dx, y: topY, sw: i });
+      hosts.push({ x: sx - dx, y: botY, sw: i });
+      hosts.push({ x: sx + dx, y: botY, sw: i });
+    }
+    return { switches: switches, centerIdx: centerIdx, gw: gw, hosts: hosts };
   };
   PacketNet.prototype.colors = function () {
     var light = document.documentElement.getAttribute('data-theme') === 'light';
@@ -984,13 +1000,17 @@
     requestAnimationFrame(loop);
   };
   PacketNet.prototype.spawnPacket = function () {
-    var hosts = this.topo.hosts;
+    var t = this.topo, hosts = t.hosts, switches = t.switches;
     var si = Math.floor(Math.random() * hosts.length);
-    var di = Math.floor(Math.random() * hosts.length);
-    while (di === si) di = Math.floor(Math.random() * hosts.length);
-    var src = hosts[si], dst = hosts[di], way;
-    if (src.sw === dst.sw) way = [src, this.topo.sw[src.sw], dst];           // same switch: 2 hops
-    else way = [src, this.topo.sw[src.sw], this.topo.sw[dst.sw], dst];       // cross-switch: 3 hops
+    var src = hosts[si], way;
+    if (Math.random() < 0.22) {                                              // egress: host -> WAN gateway
+      way = [src].concat(spineBetween(switches, src.sw, t.centerIdx)).concat([t.gw]);
+    } else {                                                                 // host -> host across the spine
+      var di = Math.floor(Math.random() * hosts.length);
+      while (di === si) di = Math.floor(Math.random() * hosts.length);
+      var dst = hosts[di];
+      way = [src].concat(spineBetween(switches, src.sw, dst.sw)).concat([dst]);
+    }
     this.packets.push({ kind: 'data', way: way, seg: 0, t: 0, spd: 0.85 + Math.random() * 0.5, st: 'move', retried: false, alpha: 1, sz: 1, atIndex: 0, atId: null });
   };
   PacketNet.prototype.arriveSwitch = function (q, now) {
@@ -1020,30 +1040,48 @@
     ctx.strokeStyle = 'rgba(' + accent + ',0.12)'; ctx.stroke();
     ctx.setLineDash([]);
 
-    // links: host -> its switch, then the switch-to-switch spine
+    // access links: each host -> its switch
     ctx.strokeStyle = 'rgba(' + accent + ',0.14)';
     for (var i = 0; i < t.hosts.length; i++) {
-      var hn = t.hosts[i], swn = t.sw[hn.sw];
+      var hn = t.hosts[i], swn = t.switches[hn.sw];
       ctx.beginPath(); ctx.moveTo(hn.x, hn.y); ctx.lineTo(swn.x, swn.y); ctx.stroke();
     }
+    // spine: switch-to-switch backbone
     ctx.strokeStyle = 'rgba(' + accent + ',0.2)'; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.moveTo(t.swA.x, t.swA.y); ctx.lineTo(t.swB.x, t.swB.y); ctx.stroke();
+    for (var s = 0; s < t.switches.length - 1; s++) {
+      ctx.beginPath(); ctx.moveTo(t.switches[s].x, t.switches[s].y);
+      ctx.lineTo(t.switches[s + 1].x, t.switches[s + 1].y); ctx.stroke();
+    }
+    // WAN uplink: center switch -> gateway (dashed)
+    var cs = t.switches[t.centerIdx];
+    ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(' + accent + ',0.24)';
+    ctx.beginPath(); ctx.moveTo(cs.x, cs.y); ctx.lineTo(t.gw.x, t.gw.y); ctx.stroke();
+    ctx.setLineDash([]);
 
     // hosts: 8x8 stroked squares
     ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(' + accent + ',0.5)';
     for (var j = 0; j < t.hosts.length; j++) ctx.strokeRect(t.hosts[j].x - 4, t.hosts[j].y - 4, 8, 8);
 
-    // switches: stroked + filled diamonds
-    var sws = [t.swA, t.swB];
-    for (var k = 0; k < sws.length; k++) {
-      var sw = sws[k];
+    // switches: stroked + filled diamonds with mono labels
+    ctx.font = '9px "IBM Plex Mono", monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (var k = 0; k < t.switches.length; k++) {
+      var sw = t.switches[k];
       ctx.save();
       ctx.translate(sw.x, sw.y); ctx.rotate(Math.PI / 4);
       ctx.fillStyle = 'rgba(' + accent + ',0.10)';
       ctx.strokeStyle = 'rgba(' + muted + ',0.7)';
       ctx.beginPath(); ctx.rect(-6, -6, 12, 12); ctx.fill(); ctx.stroke();
       ctx.restore();
+      ctx.fillStyle = 'rgba(' + muted + ',0.85)';
+      ctx.fillText('sw' + k, sw.x, sw.y + 17);
     }
+    // gateway: rounded router box + label
+    var g = t.gw;
+    ctx.fillStyle = 'rgba(' + accent + ',0.14)';
+    ctx.strokeStyle = 'rgba(' + accent + ',0.6)'; ctx.lineWidth = 1.2;
+    roundRectPath(ctx, g.x - 11, g.y - 8, 22, 16, 3); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(' + accent + ',0.85)'; ctx.fillText('gw', g.x, g.y);
   };
   PacketNet.prototype.draw = function (dt, now) {
     var s = this.bg; if (!s) return;
@@ -1054,17 +1092,17 @@
     this.drawTopology(ctx, w, h, accent, muted);
     if (this.reduced) return;                      // static topology only
 
-    // spawn control — keep it busy: spawn while fewer than 5 data packets are in flight
+    // spawn control — keep the wider network busy: cap concurrent data packets
     this.spawnCooldown -= dt;
     var dataInFlight = 0, p;
     for (p = 0; p < this.packets.length; p++) if (this.packets[p].kind === 'data') dataInFlight++;
-    if (this.spawnCooldown <= 0 && dataInFlight < 5) {
+    if (this.spawnCooldown <= 0 && dataInFlight < 10) {
       this.spawnPacket();
-      this.spawnCooldown = 360 + Math.random() * 700;
+      this.spawnCooldown = 240 + Math.random() * 520;
     }
 
     // advance + draw each packet; rebuild the list and tally per-switch queue depth
-    var next = [], queuedBy = { A: 0, B: 0 };
+    var next = [], queuedBy = {};
     for (var pi = 0; pi < this.packets.length; pi++) {
       var q = this.packets[pi];
 
@@ -1075,7 +1113,7 @@
         continue;
       }
       if (q.st === 'queued') {                      // waiting for a busy switch
-        queuedBy[q.atId]++;
+        queuedBy[q.atId] = (queuedBy[q.atId] || 0) + 1;
         if (now >= this.switchFree[q.atId]) this.arriveSwitch(q, now);
         this.drawPkt(q.way[q.atIndex], q, accent); next.push(q); continue;
       }
@@ -1109,11 +1147,10 @@
     this.packets = next;
 
     // queue indicators — stack a dot per queued packet above each switch
-    var ids = ['A', 'B'];
-    for (var ii = 0; ii < ids.length; ii++) {
-      var id = ids[ii], swn = this.topo.sw[id];
-      ctx.fillStyle = 'rgba(' + accent + ',0.55)';
-      for (var qd = 0; qd < queuedBy[id]; qd++) {
+    ctx.fillStyle = 'rgba(' + accent + ',0.55)';
+    for (var ii = 0; ii < this.topo.switches.length; ii++) {
+      var swn = this.topo.switches[ii], depth = queuedBy[swn.id] || 0;
+      for (var qd = 0; qd < depth; qd++) {
         ctx.beginPath(); ctx.arc(swn.x, swn.y - 15 - qd * 5, 1.4, 0, 6.2832); ctx.fill();
       }
     }

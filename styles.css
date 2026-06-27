@@ -201,8 +201,8 @@ button.theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 }
 
 /* decorative closed-network packet-flow viz filling the spare skills-grid cell */
-.net-cell { display: flex; flex-direction: column; }
-.net-canvas { width: 100%; flex: 1; min-height: 150px; display: block; pointer-events: none; }
+.net-cell { display: flex; flex-direction: column; grid-column: 1 / -1; }
+.net-canvas { width: 100%; height: 120px; display: block; pointer-events: none; }
 .net-legend { display: flex; gap: 16px; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--faint); }
 .net-legend b { color: var(--accent); font-weight: 400; }
 
