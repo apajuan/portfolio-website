@@ -1,5 +1,5 @@
 /* ============================================================
-   Juan Raphael Dilag — portfolio
+   Juan Raphael Dilag, portfolio
    Design tokens ported verbatim from the Claude Design prototype.
    ============================================================ */
 
@@ -370,7 +370,7 @@ footer.site .lead { font-size: 18px; color: var(--muted); max-width: 52ch; margi
 .terminal .warn { color: #e0a64d; }
 .terminal .err { color: #d9706b; }
 
-/* scroll-reveal (images/mockups only — never text) */
+/* scroll-reveal (images/mockups only, never text) */
 [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 [data-reveal].revealed { opacity: 1; transform: none; }
 

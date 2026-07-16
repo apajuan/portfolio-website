@@ -1,5 +1,5 @@
 /* ============================================================
-   Juan Raphael Dilag — portfolio
+   Juan Raphael Dilag, portfolio
    Vanilla logic ported from the Claude Design prototype:
    theme toggle, tag filtering, project modal -> case-study
    overlay, and the full-bleed hero canvas (flow field / life).
@@ -16,7 +16,7 @@
       tags: ['BA', 'QA', 'Requirements', 'FSD', 'Process Mapping', 'Jira', 'draw.io', 'Excel', 'UAT', 'Defect Management'],
       problem: 'Business-critical processes and production systems needed clear functional specification and rigorous validation before rollout across a large-scale national distribution network.',
       contribution: 'I worked as a functional business analyst and stepped into a cross-functional QA role on two separate production-bound projects, partnering directly with stakeholders and developers.',
-      outcomeSummary: 'Validated a billing/invoicing reconfiguration impacting ~800 retail stores via 1,000+ test cases, and ran regression on an Android upgrade across hundreds of field devices — each surfacing release-blocking defects fixed before go-live.',
+      outcomeSummary: 'Validated a billing/invoicing reconfiguration impacting ~800 retail stores via 1,000+ test cases, and ran regression on an Android upgrade across hundreds of field devices, each surfacing release-blocking defects fixed before go-live.',
       approach: [
         { label: 'BA track', body: 'Ran requirements-elicitation sessions with 5+ stakeholders across two departments, mapped As-Is and To-Be process flows in draw.io, and authored a Functional Specification Document for an internal, ISO-aligned quality-audit workflow.' },
         { label: 'QA track', body: 'Designed and executed test cases in Excel, tracked and managed defects in Jira, and partnered with developers on resolution across two projects: an invoicing/billing reconfiguration and an Android OS upgrade for a field-delivery tablet application.' }
@@ -30,20 +30,20 @@
     },
     {
       id: 'subtitle', num: '02', title: 'Subtitle-Localization Tooling',
-      org: 'Self-initiated · freelance', year: '2023–25',
+      org: 'Self-initiated · freelance', year: '2023 to 2025',
       role: 'Builder', confidential: false, terminal: true,
       tags: ['Automation', 'QA/Validation', 'Python', 'CLI', 'Google Speech-to-Text', 'AI tooling', 'Process Improvement'],
-      problem: 'Managing subtitle-timing progress and quality across 50+ videos per project by hand was slow and error-prone — and I wanted to know whether AI could accelerate the first draft.',
-      contribution: 'I built the tooling myself to solve a real bottleneck in my freelance localization work (1M+ content views sustained over several years), then evaluated an AI-assisted approach and made a clear-eyed call on its fitness.',
-      outcomeSummary: 'A command-line dashboard with automated .ass quality checks and one-click packaging — and a working but deliberately shelved AI drafting prototype, kept out of production after rigorous accuracy evaluation.',
+      problem: 'Managing subtitle-timing progress and quality across 50+ videos per project by hand was slow and error-prone, and I wanted to know whether AI could speed up the first draft.',
+      contribution: 'I built the tooling myself to solve a real bottleneck in my freelance localization work (1M+ content views sustained over several years), then tested an AI-assisted approach and made an honest call on whether it was good enough.',
+      outcomeSummary: 'A command-line dashboard with automated .ass quality checks and one-click packaging, plus a working but deliberately shelved AI drafting prototype that I kept out of production after careful accuracy testing.',
       approach: [
-        { label: 'CLI progress + QA dashboard', body: 'Built a Python command-line dashboard tracking progress across every video in a project, with automated quality validation on .ass subtitle files — programmatic checks flagging overlong, too-short, and malformed lines, essentially a custom test suite for subtitle quality. Added one-click end-of-project packaging that zips deliverables and auto-drafts the client email with completion statistics.' },
-        { label: 'AI-assisted drafting prototype', body: 'Prototyped a tool integrating Google’s speech-to-text API to auto-generate .ass drafts for human review. I present this as an exploration: it proved out API integration, AI-assisted automation, and end-to-end pipeline design — and after evaluating its accuracy limitations I decided it was not production-ready. Knowing when not to ship is part of the work.' }
+        { label: 'CLI progress + QA dashboard', body: 'Built a Python command-line dashboard tracking progress across every video in a project, with automated quality validation on .ass subtitle files. Programmatic checks flag overlong, too-short, and malformed lines, essentially a custom test suite for subtitle quality. Added one-click end-of-project packaging that zips deliverables and auto-drafts the client email with completion statistics.' },
+        { label: 'AI-assisted drafting prototype', body: 'Prototyped a tool integrating Google’s speech-to-text API to auto-generate .ass drafts for human review. I present this as an exploration: it proved out API integration, AI-assisted automation, and end-to-end pipeline design. After testing its accuracy limits I decided it was not production-ready. Knowing when not to ship is part of the work.' }
       ],
       outcomes: [
         'Cut manual progress-tracking and QA overhead across 50+ videos per project down to a single command.',
         'Caught overlong, too-short and malformed lines automatically before delivery, instead of by eye.',
-        'Validated an AI drafting pipeline end-to-end, then made a documented decision not to ship it — accuracy below the bar.'
+        'Validated an AI drafting pipeline end-to-end, then made a documented decision not to ship it because accuracy was below the bar.'
       ],
       stack: ['Python', 'CLI', 'Automation', 'QA/Validation', 'Google Speech-to-Text API', 'AI tooling', 'Process Improvement'],
       repoLink: 'https://github.com/apajuan'
@@ -58,7 +58,7 @@
       outcomeSummary: 'A cross-platform system on a four-layer modular architecture that replaced an entirely manual process with live, data-driven incident reporting and dispatch for a real government office.',
       approach: [
         { label: 'Architecture & build', body: 'Designed and built a four-layer modular system: a mobile app for geotagged incident reporting and real-time responder coordination; a responder interface; and a centralized web administrative portal for incident validation, resource dispatching, and geographic data analytics.' },
-        { label: 'Security & delivery', body: 'Implemented a Data Privacy Act–compliant security framework (AES-256/SSL encryption, role-based access control, MFA), and delivered the system through one-week Agile Scrum sprints with continuous stakeholder validation.' }
+        { label: 'Security & delivery', body: 'Implemented a security framework compliant with the Data Privacy Act (AES-256/SSL encryption, role-based access control, MFA), and delivered the system through one-week Agile Scrum sprints with continuous stakeholder validation.' }
       ],
       outcomes: [
         'Replaced an entirely manual, verbal-only process with a live, data-driven reporting and dispatch system for a real city government office.',
@@ -74,7 +74,7 @@
       role: 'Hardware Lead & Full-Stack Developer', confidential: false, terminal: false,
       tags: ['IoT', 'Arduino', 'Wemos R1', 'RFID', 'Next.js', 'Supabase', 'PostgreSQL', 'Full-stack'],
       problem: 'Manual parking management with no automated access control and no real-time occupancy data.',
-      contribution: 'I led the hardware and built the full stack — from the microcontroller firmware through the database to the monitoring dashboard.',
+      contribution: 'I led the hardware and built the full stack, from the microcontroller firmware through the database to the monitoring dashboard.',
       outcomeSummary: 'A working access-control system spanning microcontrollers, sensors, a real-time database, and a remote dashboard.',
       approach: [
         { label: 'Hardware', body: 'Arduino + Wemos R1 microcontrollers interfacing with RFID sensors for gate access control.' },
@@ -89,21 +89,21 @@
       repoLink: 'https://github.com/apajuan'
     },
     {
-      id: 'bettergov', num: '05', title: 'BetterGov.ph — Calamba City Portal',
-      org: 'Open-source civic tech', year: '2025–26',
+      id: 'bettergov', num: '05', title: 'BetterGov.ph, Calamba City Portal',
+      org: 'Open-source civic tech', year: '2025 to 2026',
       role: 'Open-source contributor', confidential: false, terminal: false,
       tags: ['Civic Tech', 'Open Source', 'Front-end', 'Public Sector', 'Philippine LGU'],
-      problem: 'Philippine local government units often lack a clean, consistent transparency presence. BetterGov.ph is a community-maintained answer; the Calamba City portal needed to be built and themed from the project template.',
+      problem: 'Philippine local government units often lack a clean, consistent transparency presence. BetterGov.ph is a community-run answer to that, and the Calamba City portal needed to be built and themed from the project template.',
       contribution: 'I contribute front-end implementation work to the open-source project, building out the Calamba City portal and theming it to the city’s official branding (Gold, Red, Blue, Grey, White).',
       outcomeSummary: 'Front-end implementation and theming for a real LGU transparency portal, contributed to a community-maintained open-source project.',
       approach: [
         { label: 'Implementation', body: 'Built the Calamba City portal out from the shared project template, implementing pages and components in the front-end stack.' },
-        { label: 'Theming', body: 'Applied the city’s official brand palette — Gold, Red, Blue, Grey and White — consistently across the portal.' }
+        { label: 'Theming', body: 'Applied the city’s official brand palette (Gold, Red, Blue, Grey, and White) consistently across the portal.' }
       ],
       outcomes: [
         'Contributed front-end work to a live, community-maintained civic-tech project.',
         'Themed the portal to Calamba City’s official branding.',
-        'Did it because Philippine governance and transparency matter to me — the kind of work I want more of.'
+        'Did it because Philippine governance and transparency matter to me. This is the kind of work I want more of.'
       ],
       stack: ['Civic Tech', 'Open Source', 'Front-end', 'Philippine LGU', 'Public-sector Transparency'],
       repoLink: 'https://github.com/apajuan'
@@ -200,7 +200,7 @@
     if (!p) return;
     lastFocus = document.activeElement;
     var nda = p.confidential
-      ? '<span class="nda-badge">Confidential · NDA — details generalized</span>' : '';
+      ? '<span class="nda-badge">Confidential · NDA · details generalized</span>' : '';
     var tags = p.tags.map(function (t) { return '<span class="modal-tag">' + esc(t) + '</span>'; }).join('');
     overlayRoot.innerHTML =
       '<div class="overlay" data-close role="dialog" aria-modal="true" aria-label="' + esc(p.title) + '">' +
@@ -233,7 +233,7 @@
     return '' +
       '<div class="terminal" data-reveal>' +
         '<div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>' +
-        '<span class="title">manual.py — subtitle QA + progress dashboard</span></div>' +
+        '<span class="title">manual.py · subtitle QA + progress dashboard</span></div>' +
         '<pre><span class="g">$</span> python manual.py --watch\n' +
 'file                                               lines  longest maxCPS long short cps&gt; past over untr sty  mp4\n' +
 '<span class="dim">----------------------------------------------------------------------------------------------------------------</span>\n' +
@@ -273,7 +273,7 @@
     var p = PROJECT_BY_ID[id];
     if (!p) return;
     if (!lastFocus) lastFocus = document.activeElement;
-    var nda = p.confidential ? '<span class="nda-badge">Confidential · NDA — details generalized</span>' : '';
+    var nda = p.confidential ? '<span class="nda-badge">Confidential · NDA · details generalized</span>' : '';
     var tags = p.tags.map(function (t) { return '<span class="detail-tag">' + esc(t) + '</span>'; }).join('');
     var approach = p.approach.map(function (b) {
       return '<div class="approach-blk"><h3>' + esc(b.label) + '</h3><p>' + esc(b.body) + '</p></div>';
@@ -338,7 +338,7 @@
   }
 
   /* =========================================================
-     SCROLL REVEAL (images/mockups only — never text)
+     SCROLL REVEAL (images/mockups only, never text)
      ========================================================= */
   function observeReveals(root) {
     if (!('IntersectionObserver' in window)) {
@@ -354,7 +354,7 @@
   }
 
   /* =========================================================
-     HERO BACKGROUND — flow field / game of life
+     HERO BACKGROUND, flow field / game of life
      Full-bleed width is handled in CSS (canvas spans 100vw);
      this reads clientWidth/Height, so it picks up the width.
      ========================================================= */
@@ -516,7 +516,7 @@
   HeroBackground.prototype.drawFlow = function (dt) {
     var s = this.bg; if (!s) return;
     var ctx = s.ctx, col = this.colors();
-    // full clear — finite per-particle history trails (below) replace the old
+    // full clear, finite per-particle history trails (below) replace the old
     // translucent fade, so nothing accumulates or ghosts between frames
     ctx.fillStyle = col.bg;
     ctx.fillRect(0, 0, s.w, s.h);
@@ -561,7 +561,7 @@
     }
   };
 
-  // wind gusts — drifting green particles, each leaving a short fading trailing
+  // wind gusts, drifting green particles, each leaving a short fading trailing
   // streamline, blown by a turbulent wind whose direction slowly wanders and that
   // periodically surges then settles (ebb and flow). A slow breeze, not a storm.
   // Tuning knobs:
@@ -599,7 +599,7 @@
     var ctx = s.ctx, col = this.colors(), w = s.w, h = s.h;
     var light = document.documentElement.getAttribute('data-theme') === 'light';
 
-    // 1. full clear — solid background each frame. Trails come from per-particle
+    // 1. full clear, solid background each frame. Trails come from per-particle
     //    position history (below), not from compositing translucent rects, so
     //    nothing accumulates and tails clean themselves up completely.
     ctx.fillStyle = col.bg;
@@ -614,7 +614,7 @@
       return;
     }
 
-    // 2. gust envelope — fast-ish attack toward a peak, then slow decay to calm
+    // 2. gust envelope, fast-ish attack toward a peak, then slow decay to calm
     this.gustCooldown -= dt;
     if (this.gustCooldown <= 0) {
       this.gustPeak = 0.5 + Math.random() * 0.45;
@@ -628,7 +628,7 @@
       this.gust += (0 - this.gust) * Math.min(1, dt * 0.00085);
     }
 
-    // 3. turbulent global direction — a slowly wandering base angle (radians)
+    // 3. turbulent global direction, a slowly wandering base angle (radians)
     this.windPhase += dt * 0.00003;
     var meanAng = Math.sin(this.windPhase * 1.3) * 0.5 + this.perlin(this.windPhase, 10) * 0.6;
 
@@ -657,7 +657,7 @@
       var cap = Math.round(maxLen * (0.6 + pt.spd * 0.4));
       while (pt.hist.length > cap * 2) { pt.hist.shift(); pt.hist.shift(); }
 
-      // fading, tapering curved polyline — quadratic curves through each point's
+      // fading, tapering curved polyline, quadratic curves through each point's
       // midpoint so tails curl smoothly with the turbulence instead of looking faceted
       var segs = pt.hist.length / 2 - 1;
       for (var j = 0; j < segs; j++) {
@@ -673,7 +673,7 @@
         ctx.stroke();
       }
 
-      // drifting dot head — soft bloom on the larger "lead" dots only
+      // drifting dot head, soft bloom on the larger "lead" dots only
       var lead = pt.r > 1.4;
       if (lead) { ctx.shadowBlur = 6 + this.gust * 6; ctx.shadowColor = 'rgba(' + col.accent + ',' + (0.5 * fadeIn) + ')'; }
       ctx.fillStyle = 'rgba(' + col.accent + ',' + (dotA * fadeIn) + ')';
@@ -689,7 +689,7 @@
     }
   };
 
-  // dot matrix / signal sweep — a quiet grid of dots with a soft brightness wave
+  // dot matrix / signal sweep, a quiet grid of dots with a soft brightness wave
   HeroBackground.prototype.setupSignal = function () {
     var s = this.bg; if (!s) return;
     this.sigCell = 24;
@@ -734,7 +734,7 @@
     }
   };
 
-  // contour topography of Calamba — Mt. Makiling (dominant peak, south) sloping
+  // contour topography of Calamba, Mt. Makiling (dominant peak, south) sloping
   // down to Laguna de Bay (flat lowland/water, north). Morphing iso-lines via
   // marching squares over the terrain height field + slowly drifting noise.
   HeroBackground.prototype.setupContour = function () {
@@ -902,7 +902,7 @@
   }
 
   /* =========================================================
-     PACKET NETWORK — decorative "closed private network" banner spanning
+     PACKET NETWORK, decorative "closed private network" banner spanning
      the full skills grid. Twelve hosts (4 per switch) route packets across
      a three-switch spine, with an upstream WAN gateway taking the occasional
      egress flow. Hop-by-hop routing, per-switch congestion queues, ACK
@@ -1088,11 +1088,11 @@
     var ctx = s.ctx, w = s.w, h = s.h;
     var col = this.colors(), accent = col.accent, muted = col.muted;
 
-    ctx.clearRect(0, 0, w, h);                     // full clear — no fade-rect residue
+    ctx.clearRect(0, 0, w, h);                     // full clear, no fade-rect residue
     this.drawTopology(ctx, w, h, accent, muted);
     if (this.reduced) return;                      // static topology only
 
-    // spawn control — keep the wider network busy: cap concurrent data packets
+    // spawn control, keep the wider network busy: cap concurrent data packets
     this.spawnCooldown -= dt;
     var dataInFlight = 0, p;
     for (p = 0; p < this.packets.length; p++) if (this.packets[p].kind === 'data') dataInFlight++;
@@ -1146,7 +1146,7 @@
     }
     this.packets = next;
 
-    // queue indicators — stack a dot per queued packet above each switch
+    // queue indicators, stack a dot per queued packet above each switch
     ctx.fillStyle = 'rgba(' + accent + ',0.55)';
     for (var ii = 0; ii < this.topo.switches.length; ii++) {
       var swn = this.topo.switches[ii], depth = queuedBy[swn.id] || 0;

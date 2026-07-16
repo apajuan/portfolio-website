@@ -1,6 +1,6 @@
 /* ============================================================
-   Juan Raphael Dilag — portfolio
-   coursework.js — theme sync + screenshot lightbox for
+   Juan Raphael Dilag, portfolio
+   coursework.js, theme sync + screenshot lightbox for
    coursework.html. Dependency-free, matches app.js conventions.
    Theme uses the same localStorage key ('apa-theme') as the
    main site so the choice persists across pages.
