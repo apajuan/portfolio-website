@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  coursework.html — Academic software (machine problems + capstone)
+  built across the BSIT program. Shares styles.css design tokens
+  with index.html; page-specific layout lives in coursework.css.
+
+  SCREENSHOTS — how to add your own:
+  Each screenshot is a <figure class="shot ..."> with a placeholder
+  <div class="shot-ph"> inside a <div class="shot-frame">. To use a
+  real screenshot, just replace that placeholder div with an <img>:
+
+      <div class="shot-frame">
+        <img src="screenshots/ccis-login.png" alt="CCIS Events — login">
+      </div>
+
+  Drop the image files in a top-level  screenshots/  folder (create it).
+  Web screens use .shot--web (16:10); phone screens use .shot--mobile
+  (9:18). Images are shown uncropped (object-fit: contain). Once an
+  <img> is present, clicking it opens the lightbox automatically.
+  ============================================================
+-->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coursework & Capstone — Juan Raphael Dilag</title>
+  <meta name="description" content="Software Juan Raphael Dilag built as a requirement across four years of the BSIT program — nine machine problems (C#, Python, PHP, Xamarin, ASP.NET, Next.js/IoT) and a fourth-year capstone: a community-based disaster reporting & response system for a city government office.">
+  <meta name="author" content="Juan Raphael A. Dilag">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Coursework & Capstone — Juan Raphael Dilag">
+  <meta property="og:description" content="Nine machine problems across four years of BSIT, plus a fourth-year capstone disaster-response system — features, GUI, and the software & hardware behind each.">
+  <meta property="og:url" content="https://raphaeldilag.xyz/coursework.html">
+  <meta property="og:image" content="https://raphaeldilag.xyz/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://raphaeldilag.xyz/coursework.html">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23121512'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23e8ece7'%3EA%3C/text%3E%3Ccircle cx='24' cy='22' r='2.5' fill='%237fb487'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="coursework.css">
+
+  <!-- set stored theme before paint to avoid a flash (same key as the main site) -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('apa-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <nav>
+      <a href="index.html#top" class="brand">Apa Dilag<span>.</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="navlink">← Portfolio</a>
+        <a href="#machine-problems" class="navlink">Machine Problems</a>
+        <a href="#capstone" class="navlink">Capstone</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">Light</button>
+        <a href="documents/Juan_Raphael_Dilag_Resume.pdf" download class="btn btn-primary btn-sm">Résumé ↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ DOCUMENT HEADER ============ -->
+    <section class="doc-hero">
+      <div class="doc-kicker">Academic software · BSIT · 2021–2026</div>
+      <h1>Coursework &amp; Capstone</h1>
+      <p class="doc-lead">The software I built as a requirement across four years of my degree — from first-year console programs to a fourth-year capstone deployed for a city disaster-response office.</p>
+      <p class="doc-sub">Nine machine problems span C#, Python, PHP, SQL and the modern TypeScript/React stack — console utilities, desktop and native-mobile apps, database-backed web apps, and a full hardware-to-cloud IoT build. The capstone ties it together: a real-time, multi-app reporting and response system for a Local Government Unit. Each entry below follows the same shape — a discussion of the features, screenshots of the GUI, and the software (and where relevant, hardware) used.</p>
+
+      <div class="doc-cta">
+        <a href="#machine-problems" class="btn btn-primary btn-md">Machine problems</a>
+        <a href="#capstone" class="btn btn-outline btn-md">Capstone project</a>
+        <a href="https://github.com/JRADilag" target="_blank" rel="noopener" class="btn btn-outline btn-md">github.com/JRADilag ↗</a>
+      </div>
+
+      <div class="profile" style="margin-top:44px;">
+        <div class="row"><div class="k">program</div><div class="v">BS Information Technology (Cybersecurity)</div></div>
+        <div class="row"><div class="k">institution</div><div class="v">Mapúa Malayan Colleges Laguna · College of Computer &amp; Information Science</div></div>
+        <div class="row"><div class="k">span</div><div class="v">First year → fourth year · graduating 2026</div></div>
+        <div class="row"><div class="k">catalog</div><div class="v accent">9 machine problems · 1 capstone system (3 apps + portal)</div></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTENTS ============ -->
+    <nav class="toc" aria-label="Contents">
+      <div class="eyebrow">Contents</div>
+      <div class="toc-groups">
+        <div class="toc-group">
+          <h3>01 · Machine problems</h3>
+          <ol>
+            <li><a href="#mp-cipher"><span class="n">MP-01</span> Multi-Cipher Console Program</a></li>
+            <li><a href="#mp-pycrypto"><span class="n">MP-02</span> Python Cryptography Toolkit</a></li>
+            <li><a href="#mp-marine"><span class="n">MP-03</span> Marine Adventures — 2D Shooter</a></li>
+            <li><a href="#mp-resort"><span class="n">MP-04</span> Resort Management Database</a></li>
+            <li><a href="#mp-docusafe"><span class="n">MP-05</span> Document Management System</a></li>
+          </ol>
+        </div>
+        <div class="toc-group">
+          <h3>01 · Machine problems (cont.)</h3>
+          <ol>
+            <li><a href="#mp-gearshift"><span class="n">MP-06</span> GearShift Auto Rentals</a></li>
+            <li><a href="#mp-ccis"><span class="n">MP-07</span> College Events Attendance App</a></li>
+            <li><a href="#mp-inventory"><span class="n">MP-08</span> Inventory Management App</a></li>
+            <li><a href="#mp-iot"><span class="n">MP-09</span> IoT Monitoring &amp; Control Dashboard</a></li>
+          </ol>
+        </div>
+        <div class="toc-group">
+          <h3>02 · Capstone</h3>
+          <ol>
+            <li><a href="#capstone"><span class="n">CAP</span> Community-Based Reporting &amp; Response System</a></li>
+            <li><a href="#cap-discussion"><span class="n">·</span> Discussion of the features</a></li>
+            <li><a href="#cap-screens"><span class="n">·</span> Screenshots of the GUI</a></li>
+            <li><a href="#cap-software"><span class="n">·</span> Software used</a></li>
+            <li><a href="#cap-hardware"><span class="n">·</span> Hardware used</a></li>
+          </ol>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SECTION 01 — MACHINE PROBLEMS ============ -->
+    <section id="machine-problems" class="section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2>Machine Problems</h2>
+      </div>
+      <p class="section-lead">Course requirements built across the program, in rough order of when they were taken — solo builds and team finals, in five language ecosystems. Each was scoped, built, and defended for a specific subject.</p>
+
+      <!-- ---------- MP-01 : Multi-Cipher Console Program ---------- -->
+      <article class="mp" id="mp-cipher">
+        <div class="mp-head">
+          <span class="mp-num">MP-01</span>
+          <h3>Multi-Cipher Console Program</h3>
+        </div>
+        <div class="mp-meta">
+          <span>IT129 · Information Assurance &amp; Security</span><span class="dot">·</span>
+          <span>C# (.NET console)</span><span class="dot">·</span>
+          <span>Team</span><span class="dot">·</span>
+          <span class="mp-tag">Cryptography</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A menu-driven cryptography suite that implements several classic ciphers from scratch plus one cipher of the team's own design, all sitting on a small reusable console-UI framework. The framework (<span class="em">Menu</span> / <span class="em">Choice</span>) binds each menu item to a label, a key, and a delegate, which cleanly decouples the interface from the algorithms — new ciphers can be registered without touching the menu code.</p>
+          <ul class="feat-list">
+            <li><b>Caesar cipher</b> — alphabetic shift by a user-supplied integer, with encrypt/decrypt/info.</li>
+            <li><b>Vigenère cipher</b> — keyword cipher that also prints the full Vigenère reference table.</li>
+            <li><b>XOR cipher</b> — repeating-key bitwise XOR; ciphertext shown as hex, with hex-to-bytes parsing on decrypt.</li>
+            <li><b>Meguprazan cipher</b> — the group's original cipher, with matching encrypt and decrypt routines.</li>
+            <li><b>Reusable menu engine</b> — colored titles, descriptions, and per-item hotkeys drive the whole app.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/cipher-menu.png" alt="Multi-cipher main menu"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Main cipher menu</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Main menu</b> — colored console UI listing the available ciphers and hotkeys.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/cipher-vigenere.png" alt="Vigenère table and output"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Vigenère table &amp; output</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Vigenère</b> — printed reference table with an encrypt/decrypt run.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">.NET Console</span><span class="chip">Visual Studio 2022</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-02 : Python Cryptography Toolkit ---------- -->
+      <article class="mp" id="mp-pycrypto">
+        <div class="mp-head">
+          <span class="mp-num">MP-02</span>
+          <h3>Python Cryptography Toolkit</h3>
+        </div>
+        <div class="mp-meta">
+          <span>IT190-4P · Cryptography</span><span class="dot">·</span>
+          <span>Python 3</span><span class="dot">·</span>
+          <span>Solo</span><span class="dot">·</span>
+          <span class="mp-tag">Cryptography</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>Two-part cryptography coursework: a hand-written classic-cipher CLI, and a benchmark comparing modern production ciphers. The first part (<span class="em">Lab1.py</span>) is a menu-driven Caesar + polyalphabetic cipher implemented from scratch over the full printable-ASCII range (codepoints 32–126, mod 95) — with input validation, negative-shift handling, and length checks. The second (<span class="em">FishTacos</span>) moves to library-grade ciphers and measures them.</p>
+          <ul class="feat-list">
+            <li><b>From-scratch ciphers</b> — Caesar and polyalphabetic encryption across all printable ASCII, not just A–Z.</li>
+            <li><b>Salsa20 vs Blowfish benchmark</b> — stream vs block (CBC, manual PKCS-style padding) via PyCryptodome, timed with <code>perf_counter()</code>.</li>
+            <li><b>Test harnesses</b> — several <code>*Tests*.py</code> suites, including an interactable one, plus sample data files.</li>
+            <li><b>Input validation</b> — guards on shift range and message length before running.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/pycrypto-lab1.png" alt="Lab1 Caesar/polyalphabetic menu"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Lab1 cipher menu</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Lab1</b> — Caesar / polyalphabetic menu with a sample encryption.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/pycrypto-benchmark.png" alt="Salsa20 vs Blowfish benchmark output"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">FishTacos benchmark</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>FishTacos</b> — Salsa20 vs Blowfish timing output.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">Python 3</span><span class="chip">PyCryptodome</span><span class="chip">Salsa20</span><span class="chip">Blowfish (CBC)</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-03 : Marine Adventures ---------- -->
+      <article class="mp" id="mp-marine">
+        <div class="mp-head">
+          <span class="mp-num">MP-03</span>
+          <h3>Marine Adventures — 2D Shooter</h3>
+        </div>
+        <div class="mp-meta">
+          <span>Object-Oriented Programming</span><span class="dot">·</span>
+          <span>C# · WinForms (.NET 4.7.2)</span><span class="dot">·</span>
+          <span>Team · 2023</span><span class="dot">·</span>
+          <a href="https://github.com/JRADilag/Marine-Adventures" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A desktop 2D shooter built to exercise object-oriented game design: one class per game concept, real-time collision and spawning, power-ups, a boss enemy, and persistent high scores. <span class="em">Character</span> and <span class="em">Environment</span> act as shared base classes; <span class="em">Player</span>, <span class="em">Enemy</span> (with a <code>Boss</code> variant), <span class="em">Bullet</span>, <span class="em">PowerUps</span> and <span class="em">Obstacles</span> extend the model.</p>
+          <ul class="feat-list">
+            <li><b>Real-time gameplay</b> — movement, shooting, collision detection and enemy spawning on a game loop.</li>
+            <li><b>Power-ups</b> — Health, Speed and Attack pickups that modify the player mid-run.</li>
+            <li><b>Boss encounter</b> — a distinct boss enemy initialized separately from regular waves.</li>
+            <li><b>Persistence</b> — game state saved to <code>gameSave.txt</code> and high scores appended to <code>highScores.txt</code>.</li>
+            <li><b>Screen flow</b> — main window, game window, end screen and high-score screen.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/marine-menu.png" alt="Marine Adventures main menu"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Main menu</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Main menu</b> — title screen and entry into a run.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/marine-gameplay.png" alt="Marine Adventures boss fight"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Gameplay · boss fight</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Gameplay</b> — boss encounter with power-ups active.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/marine-highscore.png" alt="Marine Adventures high score screen"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">High-score screen</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>High scores</b> — persisted leaderboard after a run.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">WinForms</span><span class="chip">.NET Framework 4.7.2</span><span class="chip">Visual Studio</span><span class="chip">Git (PR workflow)</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-04 : Resort Management Database ---------- -->
+      <article class="mp" id="mp-resort">
+        <div class="mp-head">
+          <span class="mp-num">MP-04</span>
+          <h3>Resort Management Database</h3>
+        </div>
+        <div class="mp-meta">
+          <span>Database design</span><span class="dot">·</span>
+          <span>SQL (T-SQL DDL)</span><span class="dot">·</span>
+          <span>Team</span><span class="dot">·</span>
+          <span class="mp-tag">Schema design</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A relational schema-design artifact for a resort-management system — a design-only deliverable (<span class="em">Statements.txt</span>) rather than a runnable app. It demonstrates normalized modelling with primary keys, check constraints and referential relationships.</p>
+          <ul class="feat-list">
+            <li><b>Departments</b> — role as primary key with a <code>CHECK</code> constraint limiting roles to Accountant / Maintenance / Reception, plus salary range and qualifications.</li>
+            <li><b>Manager &amp; Employees</b> — an employee "managed-by" relationship modelled with foreign keys.</li>
+            <li><b>Constraints-first design</b> — keys, checks and relationships expressed directly in <code>CREATE TABLE</code> DDL.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <p style="margin-bottom:14px;">This is a database design artifact with no application GUI — the screenshots below stand in for the schema DDL and its entity-relationship diagram.</p>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/resort-erd.png" alt="Resort schema ERD"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">◫</span><span class="shot-ph-cap">Entity-relationship diagram</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>ERD</b> — Departments · Manager · Employees and their relationships.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/resort-ddl.png" alt="CREATE TABLE DDL"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">CREATE TABLE DDL</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>DDL</b> — the T-SQL <code>CREATE</code> statements with keys and constraints.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">SQL (T-SQL)</span><span class="chip">SQL Server / SSMS</span><span class="chip">Relational modelling</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-05 : Document Management System ---------- -->
+      <article class="mp" id="mp-docusafe">
+        <div class="mp-head">
+          <span class="mp-num">MP-05</span>
+          <h3>Document Management System — “DocuSafe”</h3>
+        </div>
+        <div class="mp-meta">
+          <span>IT140P · Web systems &amp; databases</span><span class="dot">·</span>
+          <span>PHP · MySQL</span><span class="dot">·</span>
+          <span>Solo</span><span class="dot">·</span>
+          <span class="mp-tag">Web · CRUD</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A database-backed web app for storing personal documents with expiry tracking, user authentication and full CRUD — including binary file storage. Users authenticate against a <span class="em">users</span> table using <code>password_verify()</code> against bcrypt-hashed passwords; documents (with the file itself) live in a <span class="em">docusafe</span> table as BLOBs. The project evolved from an earlier records-only lab prototype into the finished app.</p>
+          <ul class="feat-list">
+            <li><b>Secure auth</b> — bcrypt-hashed passwords and prepared statements throughout.</li>
+            <li><b>Binary file storage</b> — multipart uploads inserted as BLOBs and streamed back on demand.</li>
+            <li><b>Expiry tracking</b> — each document carries an expiry date alongside type and timestamps.</li>
+            <li><b>Full CRUD + search</b> — add, edit, delete and search documents per authenticated user.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/docusafe-login.png" alt="DocuSafe login"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Login</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Login</b> — bcrypt-verified authentication.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/docusafe-dashboard.png" alt="DocuSafe document dashboard"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Document dashboard</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Dashboard</b> — stored documents with expiry tracking.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/docusafe-upload.png" alt="DocuSafe upload"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Upload document</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Upload</b> — a file stored as a BLOB via a prepared insert.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">XAMPP / Apache</span><span class="chip">HTML · CSS · JS</span><span class="chip">bcrypt</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-06 : GearShift Auto Rentals ---------- -->
+      <article class="mp" id="mp-gearshift">
+        <div class="mp-head">
+          <span class="mp-num">MP-06</span>
+          <h3>GearShift Auto Rentals — Car-Rental Web App</h3>
+        </div>
+        <div class="mp-meta">
+          <span>Web applications</span><span class="dot">·</span>
+          <span>ASP.NET Web Forms · C# · MS Access</span><span class="dot">·</span>
+          <span>Team</span><span class="dot">·</span>
+          <span class="mp-tag">Web</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A group final implementing a full car-rental platform: public marketing pages, customer accounts, a browsable fleet with scheduling, and an admin back office. It uses classic Web Forms — each screen is an <code>.aspx</code> view plus an <code>.aspx.cs</code> code-behind — grouped by area, with data stored in a Microsoft Access database.</p>
+          <ul class="feat-list">
+            <li><b>Role-separated areas</b> — Auth (sign-up / login / profile), Fleet, User, and Admin, plus the public Home area.</li>
+            <li><b>Fleet browsing &amp; booking</b> — browse cars, view car detail, and schedule a reservation.</li>
+            <li><b>Customer reservations</b> — a customer view of their own bookings.</li>
+            <li><b>Admin back office</b> — manage all reservations and user accounts.</li>
+            <li><b>Access-backed data</b> — <code>GearShiftAutoRentals.accdb</code> with JSON handling via Newtonsoft.Json.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/gearshift-home.png" alt="GearShift home page"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Home / marketing</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Home</b> — public landing and marketing pages.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/gearshift-fleet.png" alt="GearShift fleet browse"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Fleet browse &amp; detail</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Fleet</b> — browse cars and open a car's detail view.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/gearshift-schedule.png" alt="GearShift booking schedule"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Booking schedule</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Schedule</b> — reserve a car for a date range.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/gearshift-admin.png" alt="GearShift admin reservations"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Admin reservations</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Admin</b> — manage all bookings and user accounts.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">ASP.NET Web Forms</span><span class="chip">C#</span><span class="chip">.NET 4.8.1</span><span class="chip">Microsoft Access</span><span class="chip">Newtonsoft.Json</span><span class="chip">Visual Studio</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-07 : College Events Attendance App ---------- -->
+      <article class="mp" id="mp-ccis">
+        <div class="mp-head">
+          <span class="mp-num">MP-07</span>
+          <h3>College Events Attendance App</h3>
+        </div>
+        <div class="mp-meta">
+          <span>Database Fundamentals · final</span><span class="dot">·</span>
+          <span>Xamarin.Android (C#) · PHP · Oracle</span><span class="dot">·</span>
+          <span>Team</span><span class="dot">·</span>
+          <a href="https://github.com/JRADilag/CCISEventsAttendance" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A native Android app for creating college (CCIS) events and recording attendance, built as the final requirement for Database Fundamentals and delivered by a team with a real pull-request workflow and full git history. The Android UI is Activity-per-screen; data access is centralized in a <span class="em">DatabaseHander</span> that HTTP-calls PHP scripts backed by an Oracle database over OCI8.</p>
+          <ul class="feat-list">
+            <li><b>Admin event lifecycle</b> — create, edit and manage events from dedicated Activities.</li>
+            <li><b>Attendance recording</b> — capture attendance against an event, surfaced through an Oracle view.</li>
+            <li><b>Native mobile + enterprise DB</b> — Xamarin.Android talking to Oracle through a PHP data layer.</li>
+            <li><b>Collaborative Git workflow</b> — merged pull requests with a public history.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--mobile">
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/ccis-login.png" alt="CCIS login"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Login</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Login</b> — entry / authentication.</figcaption>
+            </figure>
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/ccis-admin-home.png" alt="CCIS admin home"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Admin home</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Admin home</b> — event management hub.</figcaption>
+            </figure>
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/ccis-create-event.png" alt="CCIS create event"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Create event</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Create event</b> — new CCIS event form.</figcaption>
+            </figure>
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/ccis-attendance.png" alt="CCIS attendance"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Attendance</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Attendance</b> — recording turnout for an event.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">Xamarin.Android (C#)</span><span class="chip">MonoAndroid 13.0</span><span class="chip">PHP</span><span class="chip">Oracle Database (OCI8)</span><span class="chip">XAMPP</span><span class="chip">Visual Studio 2022</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-08 : Inventory Management App ---------- -->
+      <article class="mp" id="mp-inventory">
+        <div class="mp-head">
+          <span class="mp-num">MP-08</span>
+          <h3>Inventory Management App</h3>
+        </div>
+        <div class="mp-meta">
+          <span>Mobile application development</span><span class="dot">·</span>
+          <span>Xamarin.Android (C#) · PHP REST · MySQL</span><span class="dot">·</span>
+          <span>Team</span><span class="dot">·</span>
+          <span class="mp-tag">Mobile</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A native Android inventory app with user accounts, backed by a custom PHP REST API over MySQL. The codebase keeps a clean separation between UI and data: every feature pairs an <code>Activity</code> (screen) with a <code>Handler</code> (API call). Inventory is scoped per user (owner), and item types are populated from a bundled catalog.</p>
+          <ul class="feat-list">
+            <li><b>Accounts</b> — register and login flows against the REST API.</li>
+            <li><b>Full CRUD</b> — add, update and delete items, plus search and sort.</li>
+            <li><b>Activity / Handler architecture</b> — UI activities cleanly separated from API-call handlers.</li>
+            <li><b>Per-user data</b> — an <code>itemsTable</code> scoped by owner, with types from an XML catalog (Clothing, Food, Technology, Other).</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--mobile">
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/inventory-welcome.png" alt="Inventory welcome/login"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Welcome / login</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Welcome</b> — login and registration.</figcaption>
+            </figure>
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/inventory-list.png" alt="Inventory list with search and sort"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Inventory list</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>List</b> — the user's items with search and sort.</figcaption>
+            </figure>
+            <figure class="shot shot--mobile">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/inventory-additem.png" alt="Inventory add/update item"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Add / update item</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Add / update</b> — item form with a type spinner.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">Xamarin.Android (C#)</span><span class="chip">MonoAndroid 13.0</span><span class="chip">PHP REST API</span><span class="chip">MySQL</span><span class="chip">XAMPP</span><span class="chip">Visual Studio</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---------- MP-09 : IoT Monitoring & Control Dashboard ---------- -->
+      <article class="mp" id="mp-iot">
+        <div class="mp-head">
+          <span class="mp-num">MP-09</span>
+          <h3>IoT Monitoring &amp; Control Dashboard</h3>
+        </div>
+        <div class="mp-meta">
+          <span>IT155P · IoT / full-stack</span><span class="dot">·</span>
+          <span>Next.js 16 · React 19 · Supabase · Wemos</span><span class="dot">·</span>
+          <span>Team · 2024</span><span class="dot">·</span>
+          <span class="mp-tag">IoT</span>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Discussion of the features</div>
+          <p>A prepaid RFID parking-card system with integrated IoT environmental monitoring — the most modern stack in the set. An RFID-equipped Wemos (ESP8266) reads parking cards, logs vehicle entry/exit and reports temperature/humidity from a DHT sensor, while a Next.js dashboard manages cards, balances and parking logs and can remotely toggle an LED and a relay. It spans three tiers: PHP endpoints the microcontroller calls, PHP endpoints for a mobile client, and the Next.js management website (backed by Supabase).</p>
+          <ul class="feat-list">
+            <li><b>Prepaid card system</b> — issue an RFID card with a random ID and starting balance, then top-up.</li>
+            <li><b>Entry/exit billing</b> — parking logs with automatic timestamping and a computed total price.</li>
+            <li><b>Live sensor telemetry</b> — the device pushes DHT temperature/humidity readings to the backend.</li>
+            <li><b>Remote actuation</b> — toggle an LED and a switch/relay from the dashboard.</li>
+            <li><b>Modern management UI</b> — App-Router dashboard with card &amp; log tables (shadcn/ui + TanStack Table) talking to Supabase directly.</li>
+          </ul>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Screenshots of the GUI</div>
+          <div class="shot-grid shot-grid--web">
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/iot-dashboard.png" alt="IoT dashboard cards and logs"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dashboard · cards &amp; logs</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Dashboard</b> — card holders and parking logs.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/iot-createcard.png" alt="Create RFID card"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Create RFID card</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Create card</b> — issue a prepaid RFID card.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/iot-topup.png" alt="Top up balance"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Top-up balance</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Top-up</b> — add balance to an existing card.</figcaption>
+            </figure>
+            <figure class="shot shot--web">
+              <div class="shot-frame">
+                <!-- replace with: <img src="screenshots/iot-telemetry.png" alt="DHT telemetry and LED/relay control"> -->
+                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Telemetry &amp; control</span><span class="shot-ph-note">screenshot pending</span></div>
+              </div>
+              <figcaption><b>Telemetry</b> — DHT readings with LED / relay toggles.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Software used</div>
+          <div class="chips">
+            <span class="chip">Next.js 16</span><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS v4</span><span class="chip">shadcn/ui</span><span class="chip">TanStack Table</span><span class="chip">Supabase (Postgres)</span><span class="chip">PHP</span><span class="chip">MySQL</span>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-label">Hardware used</div>
+          <div class="chips">
+            <span class="chip chip--hw">Wemos D1 (ESP8266)</span><span class="chip chip--hw">RFID reader (RC522)</span><span class="chip chip--hw">RFID cards</span><span class="chip chip--hw">DHT temp/humidity sensor</span><span class="chip chip--hw">LED</span><span class="chip chip--hw">Relay / switch module</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ SECTION 02 — CAPSTONE ============ -->
+    <section id="capstone" class="section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>Capstone Project</h2>
+      </div>
+
+      <div class="capstone-hero">
+        <h3 class="capstone-title">Community-Based Reporting &amp; Response System</h3>
+        <p class="capstone-sub">A community-based reporting and response system with geotagging integration for City Disaster Risk Reduction and Management Offices (CDRRMOs) — piloted with the Biñan City CDRRMO as a replicable model for Philippine LGUs.</p>
+
+        <div class="authorcard">
+          <div class="row"><div class="k">authors</div><div class="v">Juan Raphael A. Dilag · Miguel Joseph M. Medina · Gian Ludvig L. Reyes</div></div>
+          <div class="row"><div class="k">adviser</div><div class="v">Leonnel D. De Mesa</div></div>
+          <div class="row"><div class="k">institution</div><div class="v">Mapúa Malayan Colleges Laguna · College of Computer &amp; Information Science</div></div>
+          <div class="row"><div class="k">pilot locale</div><div class="v">Biñan City CDRRMO</div></div>
+          <div class="row"><div class="k">architecture</div><div class="v accent">4-layer · 3 apps + admin portal on a shared Supabase backend</div></div>
+        </div>
+      </div>
+
+      <!-- ---------- Capstone : Discussion ---------- -->
+      <div class="subblock" id="cap-discussion">
+        <div class="subblock-label">Discussion of the features</div>
+        <p>The system modernizes the incident-reporting and emergency-dispatch workflows of an LGU disaster office — replacing voice-hotline reporting, manual logbooks and verbal radio dispatch with a real-time, cross-platform digital ecosystem. Traditional phone-based reporting produces incomplete situational data, inaccurate locations and delayed response; the command center is fragmented, and field responders lack digital navigation and structured feedback. The system answers each of those with a purpose-built interface, all unified by one Supabase backend using a four-layer architecture (presentation, application, business, data) with PostGIS for geospatial routing.</p>
+
+        <div class="iface">
+          <h4>Citizen Mobile Application <span class="badge">React Native · Expo</span></h4>
+          <p>The public-facing app for submitting structured, geotagged, multimedia incident reports. It enforces a multi-step trust gate before a citizen can report: email/phone verification, then government-ID verification (OCR extraction of name / address / DOB) to prevent fraudulent reports, admin approval, and TOTP-based MFA on login. Reports split into <b>Emergency</b> (immediate dispatch) and <b>Non-Emergency / community issues</b> (forwarded to city departments), auto-attach hardware GPS coordinates and photos/video, and support live tracking of the dispatched responder plus a resolution-confirmation handshake. A directory of local hotlines gives a quick-call fallback.</p>
+        </div>
+
+        <div class="iface">
+          <h4>CDRRMO Admin Web Portal <span class="badge">Next.js · Mapbox</span></h4>
+          <p>The command-center dashboard. Incoming reports appear in real time on a Mapbox map via Supabase WebSocket listeners, separated into emergency and non-emergency queues and categorized (Fire, Medical, Traffic, Police, Weather) with distinct urgency animations. Operators validate reports, assign verified incidents to specific field units (creating the digital link between a report and a responder), watch analytics on incident frequency, geographic distribution and response times, push public broadcast advisories to citizens' phones, and provision authorized responder accounts outside the public sign-up flow.</p>
+        </div>
+
+        <div class="iface">
+          <h4>Responder Mobile Application <span class="badge">React Native · Expo</span></h4>
+          <p>The field app for first responders. A real-time dispatch feed delivers push assignments with full incident context (media, category, citizen details); integrated mapping provides turn-by-turn routing to the exact PostGIS coordinates; and a one-tap status loop (“En Route”, “On Scene”, “Resolved”) instantly updates both the admin portal and the reporting citizen. While en route, the app streams live GPS back to the command center.</p>
+        </div>
+
+        <div class="callout">
+          <div class="eyebrow">Security &amp; data privacy</div>
+          <p>Built for strict compliance with the Philippine Data Privacy Act of 2012 (RA 10173): AES-256 for PII at rest and SSL/TLS in transit; strict role-based access control via Supabase Row-Level Security across <code>citizen</code>, <code>pending_citizen</code>, <code>responder</code> and <code>operator</code> roles; MFA required for operators and responders; and input validation plus rate limiting to defend against SQL injection and XSS.</p>
+        </div>
+
+        <div class="callout">
+          <div class="eyebrow">Methodology &amp; evaluation</div>
+          <p>Delivered with Agile Scrum on high-velocity one-week sprints, tracked in GitHub Projects with feature branches merged via peer-reviewed pull requests. Testing was continuous inside each sprint (unit/integration, end-to-end citizen-to-responder simulations, cross-platform and geospatial emulation, load/stress testing, and security scanning), followed by formal usability testing (20 participants, System Usability Scale) and User Acceptance Testing (65 participants running simulated real-world scenarios).</p>
+        </div>
+      </div>
+
+      <!-- ---------- Capstone : Screenshots ---------- -->
+      <div class="subblock" id="cap-screens">
+        <div class="subblock-label">Screenshots of the GUI</div>
+
+        <div class="shot-group-title"><span class="badge">Citizen app</span> Reporting &amp; verification</div>
+        <div class="shot-grid shot-grid--mobile">
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-citizen-onboarding.png" alt="Citizen onboarding / login"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Onboarding / login</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Onboarding</b> — signup with Turnstile &amp; MFA login.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-citizen-idverify.png" alt="ID verification"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">ID verification</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>ID verification</b> — government-ID upload &amp; OCR review.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-citizen-report.png" alt="Report an incident"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Report an incident</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Report</b> — geotagged, media-backed incident form.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-citizen-tracking.png" alt="Live responder tracking"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Live tracking</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Tracking</b> — live view of the dispatched responder.</figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-group-title"><span class="badge">Admin portal</span> Command center</div>
+        <div class="shot-grid shot-grid--web">
+          <figure class="shot shot--web">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-admin-map.png" alt="Real-time incident map"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Real-time incident map</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Triage map</b> — live Mapbox view of incoming reports.</figcaption>
+          </figure>
+          <figure class="shot shot--web">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-admin-dispatch.png" alt="Dispatch assignment"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dispatch &amp; validation</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Dispatch</b> — validate a report and assign a unit.</figcaption>
+          </figure>
+          <figure class="shot shot--web">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-admin-analytics.png" alt="Analytics dashboard"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Analytics</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Analytics</b> — frequency, distribution &amp; response times.</figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-group-title"><span class="badge">Responder app</span> Field response</div>
+        <div class="shot-grid shot-grid--mobile">
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-responder-feed.png" alt="Dispatch feed"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dispatch feed</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Feed</b> — real-time incoming assignments.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-responder-details.png" alt="Incident details"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Incident details</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Details</b> — full context: media, category, location.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-responder-nav.png" alt="Turn-by-turn navigation"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Navigation</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Navigation</b> — turn-by-turn routing to the incident.</figcaption>
+          </figure>
+          <figure class="shot shot--mobile">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-responder-status.png" alt="Status updates"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Status loop</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Status</b> — one-tap En Route / On Scene / Resolved.</figcaption>
+          </figure>
+        </div>
+
+        <div class="shot-group-title"><span class="badge">Landing</span> Public site</div>
+        <div class="shot-grid shot-grid--web">
+          <figure class="shot shot--web">
+            <div class="shot-frame">
+              <!-- replace with: <img src="screenshots/cap-landing.png" alt="Public landing page"> -->
+              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Public landing page</span><span class="shot-ph-note">screenshot pending</span></div>
+            </div>
+            <figcaption><b>Landing</b> — public information site for the system.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- ---------- Capstone : Software ---------- -->
+      <div class="subblock" id="cap-software">
+        <div class="subblock-label">Software used</div>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <span class="k">Backend / data</span>
+            <div class="chips">
+              <span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">PostGIS</span><span class="chip">Supabase Auth</span><span class="chip">Row-Level Security</span><span class="chip">Edge Functions</span><span class="chip">Realtime (WebSockets)</span><span class="chip">Storage buckets</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <span class="k">Admin web</span>
+            <div class="chips">
+              <span class="chip">Next.js (App Router)</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Mapbox GL JS</span><span class="chip">Lucide</span><span class="chip">Sonner</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <span class="k">Mobile apps</span>
+            <div class="chips">
+              <span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">Expo Router</span><span class="chip">NativeWind</span><span class="chip">React Navigation</span><span class="chip">react-native-maps</span><span class="chip">expo-location</span><span class="chip">expo-notifications</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <span class="k">Identity / security</span>
+            <div class="chips">
+              <span class="chip">Didit ID verification (OCR)</span><span class="chip">Cloudflare Turnstile</span><span class="chip">TOTP MFA</span><span class="chip">AES-256</span><span class="chip">SSL/TLS</span>
+            </div>
+          </div>
+          <div class="stack-group">
+            <span class="k">Process / tooling</span>
+            <div class="chips">
+              <span class="chip">Git</span><span class="chip">GitHub Projects</span><span class="chip">Agile Scrum</span><span class="chip">Jest</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- Capstone : Hardware ---------- -->
+      <div class="subblock" id="cap-hardware">
+        <div class="subblock-label">Hardware used</div>
+        <p style="margin-bottom:14px;">The system is software running on commodity devices and cloud infrastructure — the hardware below is what it depends on and was tested against, rather than anything custom-built.</p>
+        <div class="chips">
+          <span class="chip chip--hw">Android smartphones (citizen &amp; responder apps)</span><span class="chip chip--hw">iOS devices (cross-platform target)</span><span class="chip chip--hw">Device GPS / location sensor</span><span class="chip chip--hw">Device camera (media &amp; ID capture)</span><span class="chip chip--hw">Development workstations</span><span class="chip chip--hw">Cloud servers (Supabase-managed PostgreSQL)</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact" class="site">
+    <div class="inner">
+      <div class="section-head" style="margin-bottom:28px;"><span class="section-num">↩</span><h2>Back to the portfolio</h2></div>
+      <p class="lead">This page catalogs the academic software. For the professional work — BA/QA, the CLI tooling, and the capstone as a case study — head back to the main portfolio.</p>
+      <div class="contact-row">
+        <a href="index.html" class="btn btn-primary btn-md">← Main portfolio</a>
+        <a href="documents/Juan_Raphael_Dilag_Resume.pdf" download class="btn btn-outline btn-md">Download résumé ↓</a>
+        <a href="https://github.com/JRADilag" target="_blank" rel="noopener" class="btn btn-outline btn-md">github.com/JRADilag</a>
+        <a href="mailto:juanraphaeldilag@gmail.com" class="btn btn-outline btn-md">Email</a>
+      </div>
+      <div class="foot-meta">
+        <span>© 2026 Juan Raphael A. Dilag · raphaeldilag.xyz</span>
+        <span>Calamba City, Laguna · Philippines</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="coursework.js"></script>
+</body>
+</html>
