@@ -207,7 +207,7 @@
         '<div class="modal" role="document">' +
           '<div class="modal-head">' +
             '<div>' +
-              '<div class="tagline"><span class="num">' + esc(p.num) + '</span>' + nda + '</div>' +
+              (nda ? '<div class="tagline">' + nda + '</div>' : '') +
               '<h3>' + esc(p.title) + '</h3>' +
               '<div class="meta">' + esc(p.role) + ' · ' + esc(p.org) + ' · ' + esc(p.year) + '</div>' +
             '</div>' +
@@ -291,7 +291,7 @@
           '<a href="resume.pdf" download>Résumé ↓</a>' +
         '</div></div>' +
         '<article>' +
-          '<div class="tagline"><span class="num">' + esc(p.num) + '</span>' + nda + '</div>' +
+          (nda ? '<div class="tagline">' + nda + '</div>' : '') +
           '<h1>' + esc(p.title) + '</h1>' +
           '<div class="meta">' + esc(p.role) + ' · ' + esc(p.org) + ' · ' + esc(p.year) + '</div>' +
           '<div class="detail-tags">' + tags + '</div>' +
