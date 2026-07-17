@@ -199,6 +199,11 @@
 .sem { padding: 32px 0; border-top: 1px solid var(--line); }
 .sem:first-child { border-top: none; padding-top: 8px; }
 .sem .mp-head h3 { font-size: clamp(19px, 2.4vw, 24px); font-weight: 700; }
+.sem-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--accent); margin: 0 0 10px;
+}
+.sem-win { color: var(--accent); font-weight: 600; }
 .sem-body { font-size: 15.5px; line-height: 1.7; color: var(--muted); margin: 16px 0 0; max-width: 76ch; }
 .sem-take {
   margin: 14px 0 0; padding: 2px 0 2px 16px; border-left: 2px solid var(--accent);
