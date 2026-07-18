@@ -34,7 +34,7 @@
       role: 'Builder', confidential: false, terminal: true,
       tags: ['Automation', 'QA/Validation', 'Python', 'CLI', 'Google Speech-to-Text', 'AI tooling', 'Process Improvement'],
       problem: 'Managing subtitle-timing progress and quality across 50+ videos per project by hand was slow and error-prone, and I wanted to know whether AI could speed up the first draft.',
-      contribution: 'I built the tooling myself to solve a real bottleneck in my freelance localization work (1M+ content views sustained over several years), then tested an AI-assisted approach and made an honest call on whether it was good enough.',
+      contribution: 'I built the tooling myself to fix a bottleneck in my freelance localization work (1M+ content views sustained over several years), then tested an AI-assisted approach and made an honest call on whether it was good enough.',
       outcomeSummary: 'A command-line dashboard with automated .ass quality checks and one-click packaging, plus a working but deliberately shelved AI drafting prototype that I kept out of production after careful accuracy testing.',
       approach: [
         { label: 'CLI progress + QA dashboard', body: 'Built a Python command-line dashboard tracking progress across every video in a project, with automated quality validation on .ass subtitle files. Programmatic checks flag overlong, too-short, and malformed lines, essentially a custom test suite for subtitle quality. Added one-click end-of-project packaging that zips deliverables and auto-drafts the client email with completion statistics.' },
@@ -55,13 +55,13 @@
       tags: ['BA', 'System Architecture', 'Mobile', 'Web Portal', 'AES-256/RBAC/MFA', 'Agile/Scrum', 'Civic Tech', 'Security'],
       problem: 'The Biñan City CDRRMO relied on manual, verbal-only incident-reporting workflows with no real-time coordination and no data trail.',
       contribution: 'I led requirements analysis and stakeholder validation, designed the system architecture, and coordinated development across the team.',
-      outcomeSummary: 'A cross-platform system on a four-layer modular architecture that replaced an entirely manual process with live, data-driven incident reporting and dispatch for a real government office.',
+      outcomeSummary: 'A cross-platform system on a four-layer modular architecture, designed and built as an alternative to a manual, verbal-only incident-reporting workflow: geotagged reporting, responder coordination, and centralized dispatch.',
       approach: [
         { label: 'Architecture & build', body: 'Designed and built a four-layer modular system: a mobile app for geotagged incident reporting and real-time responder coordination; a responder interface; and a centralized web administrative portal for incident validation, resource dispatching, and geographic data analytics.' },
         { label: 'Security & delivery', body: 'Implemented a security framework compliant with the Data Privacy Act (AES-256/SSL encryption, role-based access control, MFA), and delivered the system through one-week Agile Scrum sprints with continuous stakeholder validation.' }
       ],
       outcomes: [
-        'Replaced an entirely manual, verbal-only process with a live, data-driven reporting and dispatch system for a real city government office.',
+        'Designed and built the whole system, from requirements and architecture through to a working mobile app, responder interface, and web portal.',
         'Built in geotagged reporting, real-time responder coordination, and a central portal for validation, dispatch and geographic analytics.',
         'Shipped a DPA-compliant security framework (AES-256/SSL, RBAC, MFA) from day one.'
       ],
@@ -95,7 +95,7 @@
       tags: ['Civic Tech', 'Open Source', 'Front-end', 'Public Sector', 'Philippine LGU'],
       problem: 'Philippine local government units often lack a clean, consistent transparency presence. BetterGov.ph is a community-run answer to that, and the Calamba City portal needed to be built and themed from the project template.',
       contribution: 'I contribute front-end implementation work to the open-source project, building out the Calamba City portal and theming it to the city’s official branding (Gold, Red, Blue, Grey, White).',
-      outcomeSummary: 'Front-end implementation and theming for a real LGU transparency portal, contributed to a community-maintained open-source project.',
+      outcomeSummary: 'Front-end implementation and theming for an LGU transparency portal, contributed to a community-maintained open-source project.',
       approach: [
         { label: 'Implementation', body: 'Built the Calamba City portal out from the shared project template, implementing pages and components in the front-end stack.' },
         { label: 'Theming', body: 'Applied the city’s official brand palette (Gold, Red, Blue, Grey, and White) consistently across the portal.' }
