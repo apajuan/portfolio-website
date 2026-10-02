@@ -77,8 +77,8 @@
     <section class="doc-hero">
       <div class="doc-kicker">Academic software · BSIT · 2021 to 2026</div>
       <h1>Coursework and Capstone</h1>
-      <p class="doc-lead">The software I built as coursework across four years of my degree. It ranges from early console programs to a final-year capstone that was deployed for a city disaster response office.</p>
-      <p class="doc-sub">There are nine machine problems here, written in C#, Python, PHP, SQL, and the TypeScript and React stack. They include console tools, desktop and mobile apps, database-driven web apps, and one full IoT build that runs from the hardware to the cloud. The capstone is a larger system: a real-time reporting and response platform for a local government unit, made up of several apps. Every entry below follows the same layout. First a look at the features, then screenshots of the GUI, then the software used, and the hardware where it applies. A final section, separate from the software, logs the technical seminars and workshops I attended for IT180L, each as a short summary with the takeaway I drew from it.</p>
+      <p class="doc-lead">The software I built as coursework across four years of my degree. It ranges from early console programs to a final-year capstone, a reporting and response system designed and built for a city disaster response office.</p>
+      <p class="doc-sub">There are nine machine problems here, written in C#, Python, Kotlin, PHP, SQL, and the TypeScript and React stack. They include console tools, desktop and mobile apps, database-driven web apps, and one full IoT build that runs from the hardware to the cloud. The capstone is a larger system: a real-time reporting and response platform for a local government unit, made up of several apps. Every entry below follows the same layout. First a look at the features, then screenshots of the GUI, then the software used, and the hardware where it applies. A final section, separate from the software, logs the technical seminars and workshops I attended for IT180L, each as a short summary with the takeaway I drew from it.</p>
 
       <div class="doc-cta">
         <a href="#machine-problems" class="btn btn-primary btn-md">Machine problems</a>
@@ -181,17 +181,15 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/cipher-menu.png" alt="Multi-cipher main menu"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Main cipher menu</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/cipher-menu.png" alt="Multi-cipher main menu">
               </div>
               <figcaption><b>Main menu.</b> The console screen listing the ciphers and their hotkeys.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/cipher-vigenere.png" alt="Vigenère table and output"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Vigenère table &amp; output</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/cipher-vigenere.png" alt="Vigenère menu with an encryption run">
               </div>
-              <figcaption><b>Vigenère.</b> The printed reference table with a sample run.</figcaption>
+              <figcaption><b>Vigenère.</b> The cipher submenu, then a sample message encrypted with a keyword.</figcaption>
             </figure>
           </div>
         </div>
@@ -232,17 +230,15 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/pycrypto-lab1.png" alt="Lab1 Caesar/polyalphabetic menu"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Lab1 cipher menu</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/pycrypto-lab1.png" alt="Lab1 Caesar/polyalphabetic menu">
               </div>
               <figcaption><b>Lab1.</b> The Caesar and polyalphabetic menu with a sample encryption.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/pycrypto-benchmark.png" alt="Salsa20 vs Blowfish benchmark output"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">FishTacos benchmark</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/pycrypto-benchmark.png" alt="AES, Blowfish and Salsa20 benchmark output">
               </div>
-              <figcaption><b>FishTacos.</b> The Salsa20 and Blowfish timing results.</figcaption>
+              <figcaption><b>FishTacos.</b> The cipher cascade check, then the AES, Blowfish, and Salsa20 timing results.</figcaption>
             </figure>
           </div>
         </div>
@@ -250,7 +246,7 @@
         <div class="subblock">
           <div class="subblock-label">Software used</div>
           <div class="chips">
-            <span class="chip">Python 3</span><span class="chip">PyCryptodome</span><span class="chip">Salsa20</span><span class="chip">Blowfish (CBC)</span>
+            <span class="chip">Python 3</span><span class="chip">PyCryptodome</span><span class="chip">AES-256 (CBC)</span><span class="chip">Salsa20</span><span class="chip">Blowfish (CBC)</span>
           </div>
         </div>
       </article>
@@ -284,24 +280,21 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/marine-menu.png" alt="Marine Adventures main menu"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Main menu</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/marine-menu.png" alt="Marine Adventures main menu">
               </div>
-              <figcaption><b>Main menu.</b> The title screen and the start of a run.</figcaption>
+              <figcaption><b>Main menu.</b> The title screen with New Game, Load, High score, and Exit.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/marine-gameplay.png" alt="Marine Adventures boss fight"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Gameplay · boss fight</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/marine-gameplay.png" alt="Marine Adventures boss fight">
               </div>
-              <figcaption><b>Gameplay.</b> A boss fight with power-ups active.</figcaption>
+              <figcaption><b>Gameplay.</b> The level 5 boss fight, loaded from a save, with the double-shot power-up active.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/marine-highscore.png" alt="Marine Adventures high score screen"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">High-score screen</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/marine-highscore.png" alt="Marine Adventures high score screen">
               </div>
-              <figcaption><b>High scores.</b> The saved leaderboard after a run.</figcaption>
+              <figcaption><b>High scores.</b> The saved leaderboard after a run, with sample names. Captured under Mono on Linux, so the window controls look different from Windows.</figcaption>
             </figure>
           </div>
         </div>
@@ -328,11 +321,11 @@
 
         <div class="subblock">
           <div class="subblock-label">Discussion of the features</div>
-          <p>A relational schema design for a resort management system. This is a design deliverable (<span class="em">Statements.txt</span>) rather than a running app. It shows normalized modelling with primary keys, check constraints, and foreign-key relationships.</p>
+          <p>A relational schema design for a resort management system. This is a design deliverable (<span class="em">Statements.txt</span>) rather than a running app, and it is unfinished. Departments and Manager are written out with primary keys and a check constraint. Employees breaks off after two columns, so the file is a partial draft rather than a schema that would run.</p>
           <ul class="feat-list">
             <li><b>Departments:</b> the role is the primary key, with a <code>CHECK</code> constraint that limits roles to Accountant, Maintenance, or Reception, plus salary range and qualifications.</li>
-            <li><b>Manager and Employees:</b> a "managed by" relationship modelled with foreign keys.</li>
-            <li><b>Constraints first:</b> keys, checks, and relationships written directly in the <code>CREATE TABLE</code> code.</li>
+            <li><b>Manager and Employees:</b> Manager is keyed on <code>ManagerID</code>, and Employees carries a <code>ManagedBy</code> column pointing back at it. The link is implied by the column name only. No <code>FOREIGN KEY</code> is declared, and <code>ManagedBy</code> never gets a datatype.</li>
+            <li><b>Constraints first:</b> keys and checks written directly in the <code>CREATE TABLE</code> code as named <code>CONSTRAINT</code> clauses.</li>
           </ul>
         </div>
 
@@ -342,17 +335,15 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/resort-erd.png" alt="Resort schema ERD"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">◫</span><span class="shot-ph-cap">Entity-relationship diagram</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/resort-erd.png" alt="Resort schema ERD">
               </div>
-              <figcaption><b>ERD.</b> The Departments, Manager, and Employees tables and how they relate.</figcaption>
+              <figcaption><b>ERD.</b> The Departments, Manager, and Employees tables, drawn from what the schema file declares.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/resort-ddl.png" alt="CREATE TABLE DDL"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">CREATE TABLE code</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/resort-ddl.png" alt="CREATE TABLE DDL">
               </div>
-              <figcaption><b>DDL.</b> The T-SQL <code>CREATE</code> statements with keys and constraints.</figcaption>
+              <figcaption><b>DDL.</b> The T-SQL <code>CREATE</code> statements as the file has them, keys and checks included, Employees left unfinished.</figcaption>
             </figure>
           </div>
         </div>
@@ -367,19 +358,19 @@
 
       <!-- ---------- MP-05 : Document Management System ---------- -->
       <article class="mp" id="mp-docusafe">
-        <div class="topic-eyebrow">Web · CRUD</div>
+        <div class="topic-eyebrow">Mobile · CRUD</div>
         <div class="mp-head">
           <h3>Document Management System, “DocuSafe”</h3>
         </div>
         <div class="mp-meta">
           <span>IT140P · Web systems &amp; databases</span><span class="dot">·</span>
-          <span>PHP · MySQL</span><span class="dot">·</span>
+          <span>Kotlin · PHP · MySQL</span><span class="dot">·</span>
           <span>Solo</span>
         </div>
 
         <div class="subblock">
           <div class="subblock-label">Discussion of the features</div>
-          <p>A database-backed web app for storing personal documents, with expiry dates, user login, and full create, read, update, and delete, including the files themselves. Users log in against a <span class="em">users</span> table with <code>password_verify()</code> and bcrypt-hashed passwords. Documents, and the file data, live in a <span class="em">docusafe</span> table as BLOBs. The project grew from an earlier records-only lab into the finished app.</p>
+          <p>A document manager for personal documents: an Android app in Kotlin and Jetpack Compose on top of a PHP and MySQL backend. It tracks expiry dates, handles user login, and supports full create, read, update, and delete, including the files themselves. Users log in against a <span class="em">users</span> table with <code>password_verify()</code> and bcrypt-hashed passwords. Documents, and the file data, live in a <span class="em">docusafe</span> table as BLOBs. The project grew from an earlier records-only lab into the finished app.</p>
           <ul class="feat-list">
             <li><b>Secure login:</b> bcrypt-hashed passwords and prepared statements throughout.</li>
             <li><b>File storage:</b> uploads saved as BLOBs and streamed back when requested.</li>
@@ -390,27 +381,24 @@
 
         <div class="subblock">
           <div class="subblock-label">Screenshots of the GUI</div>
-          <div class="shot-grid shot-grid--web">
-            <figure class="shot shot--web">
+          <div class="shot-grid shot-grid--mobile">
+            <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/docusafe-login.png" alt="DocuSafe login"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Login</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/docusafe-login.png" alt="DocuSafe login">
               </div>
               <figcaption><b>Login.</b> Sign-in checked against bcrypt-hashed passwords.</figcaption>
             </figure>
-            <figure class="shot shot--web">
+            <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/docusafe-dashboard.png" alt="DocuSafe document dashboard"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Document dashboard</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/docusafe-dashboard.png" alt="DocuSafe document dashboard">
               </div>
-              <figcaption><b>Dashboard.</b> Stored documents with their expiry dates.</figcaption>
+              <figcaption><b>Dashboard.</b> Stored documents with their expiry dates, soonest first. Sample data shown.</figcaption>
             </figure>
-            <figure class="shot shot--web">
+            <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/docusafe-upload.png" alt="DocuSafe upload"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Upload document</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/docusafe-upload.png" alt="DocuSafe upload">
               </div>
-              <figcaption><b>Upload.</b> A file saved as a BLOB through a prepared insert.</figcaption>
+              <figcaption><b>Upload.</b> Name, type, and expiry date, then the file, which is saved as a BLOB through a prepared insert.</figcaption>
             </figure>
           </div>
         </div>
@@ -418,7 +406,7 @@
         <div class="subblock">
           <div class="subblock-label">Software used</div>
           <div class="chips">
-            <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">XAMPP / Apache</span><span class="chip">HTML · CSS · JS</span><span class="chip">bcrypt</span>
+            <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">XAMPP / Apache</span><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Ktor</span><span class="chip">bcrypt</span>
           </div>
         </div>
       </article>
@@ -452,31 +440,27 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/gearshift-home.png" alt="GearShift home page"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Home / marketing</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/gearshift-home.png" alt="GearShift home page">
               </div>
-              <figcaption><b>Home.</b> The public landing and marketing pages.</figcaption>
+              <figcaption><b>Home.</b> The public landing page.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/gearshift-fleet.png" alt="GearShift fleet browse"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Fleet browse &amp; detail</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/gearshift-fleet.png" alt="GearShift fleet browse">
               </div>
-              <figcaption><b>Fleet.</b> Browse cars and open a car's detail view.</figcaption>
+              <figcaption><b>Fleet.</b> The car grid, where each card opens that car's detail page. Sample cars shown.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/gearshift-schedule.png" alt="GearShift booking schedule"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Booking schedule</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/gearshift-schedule.png" alt="GearShift booking dialog with start and end dates">
               </div>
-              <figcaption><b>Schedule.</b> Reserve a car for a set of dates.</figcaption>
+              <figcaption><b>Schedule.</b> The booking dialog on a car's detail page, with the rental dates filled in.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/gearshift-admin.png" alt="GearShift admin reservations"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Admin reservations</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/gearshift-admin.png" alt="GearShift admin bookings with approve and deny buttons">
               </div>
-              <figcaption><b>Admin.</b> Manage all bookings and user accounts.</figcaption>
+              <figcaption><b>Admin.</b> Every booking with Approve and Deny, and the balance still due. Sample data, captured under Mono on Linux with the Access data moved to SQLite.</figcaption>
             </figure>
           </div>
         </div>
@@ -517,31 +501,27 @@
           <div class="shot-grid shot-grid--mobile">
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/ccis-login.png" alt="CCIS login"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Login</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/ccis-login.png" alt="CCIS login">
               </div>
               <figcaption><b>Login.</b> Sign-in and entry to the app.</figcaption>
             </figure>
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/ccis-admin-home.png" alt="CCIS admin home"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Admin home</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/ccis-admin-home.png" alt="CCIS admin home">
               </div>
-              <figcaption><b>Admin home.</b> The event management hub.</figcaption>
+              <figcaption><b>Admin home.</b> The organizer's home screen with the attendance dashboards.</figcaption>
             </figure>
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/ccis-create-event.png" alt="CCIS create event"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Create event</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/ccis-create-event.png" alt="CCIS create event">
               </div>
               <figcaption><b>Create event.</b> The form for a new CCIS event.</figcaption>
             </figure>
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/ccis-attendance.png" alt="CCIS attendance"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Attendance</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/ccis-attendance.png" alt="CCIS attendance list with event picker">
               </div>
-              <figcaption><b>Attendance.</b> Recording turnout for an event.</figcaption>
+              <figcaption><b>Attendance.</b> Attendees with their events, picked through the event filter. Sample data from a stand-in for the Oracle backend, rebuilt with .NET for Android to run on Linux.</figcaption>
             </figure>
           </div>
         </div>
@@ -582,24 +562,21 @@
           <div class="shot-grid shot-grid--mobile">
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/inventory-welcome.png" alt="Inventory welcome/login"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Welcome / login</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/inventory-welcome.png" alt="Inventory login screen">
               </div>
               <figcaption><b>Welcome.</b> Login and registration.</figcaption>
             </figure>
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/inventory-list.png" alt="Inventory list with search and sort"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Inventory list</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/inventory-list.png" alt="Inventory list with search and sort">
               </div>
-              <figcaption><b>List.</b> The user's items with search and sort.</figcaption>
+              <figcaption><b>List.</b> The user's items with search and a type filter. Sample data shown.</figcaption>
             </figure>
             <figure class="shot shot--mobile">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/inventory-additem.png" alt="Inventory add/update item"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Add / update item</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/inventory-additem.png" alt="Inventory add/update item">
               </div>
-              <figcaption><b>Add or update.</b> The item form with a type picker.</figcaption>
+              <figcaption><b>Add or update.</b> The item form with a type picker. Rebuilt with .NET for Android to run on Linux.</figcaption>
             </figure>
           </div>
         </div>
@@ -626,12 +603,12 @@
 
         <div class="subblock">
           <div class="subblock-label">Discussion of the features</div>
-          <p>A prepaid RFID parking-card system with built-in environmental monitoring, and the most recent stack in this set. An RFID-equipped Wemos (ESP8266) reads parking cards, logs each vehicle's entry and exit, and reports temperature and humidity from a DHT sensor. A Next.js dashboard manages the cards, balances, and parking logs, and can switch an LED and a relay on and off from anywhere. The project has three tiers: PHP endpoints that the microcontroller calls, PHP endpoints for a mobile client, and the Next.js website backed by Supabase.</p>
+          <p>A prepaid RFID parking-card system with built-in environmental monitoring, and the most recent stack in this set. An RFID-equipped Wemos (ESP8266) reads parking cards, logs each vehicle's entry and exit, and reports temperature and humidity from a DHT sensor. A Next.js dashboard manages the cards, balances, and parking logs, and a mobile client shows the sensor readings and controls an LED on the device. The project has three tiers: PHP endpoints that the microcontroller calls, PHP endpoints for a mobile client, and the Next.js website backed by Supabase.</p>
           <ul class="feat-list">
             <li><b>Prepaid cards:</b> issue an RFID card with a random ID and a starting balance, then top it up.</li>
             <li><b>Entry and exit billing:</b> parking logs with automatic timestamps and a calculated total.</li>
-            <li><b>Live sensor data:</b> the device sends DHT temperature and humidity readings to the backend.</li>
-            <li><b>Remote control:</b> switch an LED and a relay on or off from the dashboard.</li>
+            <li><b>Live sensor data:</b> the device sends DHT temperature and humidity readings to the backend, and the mobile client reads the latest values.</li>
+            <li><b>LED and switch:</b> the mobile client turns an LED on the device on or off and reads the state of a switch on the device.</li>
             <li><b>Management UI:</b> an App Router dashboard with card and log tables (shadcn/ui and TanStack Table) that talks to Supabase directly.</li>
           </ul>
         </div>
@@ -641,31 +618,21 @@
           <div class="shot-grid shot-grid--web">
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/iot-dashboard.png" alt="IoT dashboard cards and logs"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dashboard · cards &amp; logs</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/iot-dashboard.png" alt="IoT dashboard cards and logs">
               </div>
               <figcaption><b>Dashboard.</b> Card holders and parking logs.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/iot-createcard.png" alt="Create RFID card"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Create RFID card</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/iot-createcard.png" alt="Create RFID card">
               </div>
               <figcaption><b>Create card.</b> Issue a prepaid RFID card.</figcaption>
             </figure>
             <figure class="shot shot--web">
               <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/iot-topup.png" alt="Top up balance"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Top-up balance</span><span class="shot-ph-note">screenshot pending</span></div>
+                <img src="screenshots/iot-topup.png" alt="Card balances table">
               </div>
-              <figcaption><b>Top-up.</b> Add balance to an existing card.</figcaption>
-            </figure>
-            <figure class="shot shot--web">
-              <div class="shot-frame">
-                <!-- replace with: <img src="screenshots/iot-telemetry.png" alt="DHT telemetry and LED/relay control"> -->
-                <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Telemetry &amp; control</span><span class="shot-ph-note">screenshot pending</span></div>
-              </div>
-              <figcaption><b>Telemetry.</b> DHT readings with the LED and relay switches.</figcaption>
+              <figcaption><b>Top-up.</b> The balance list for every issued card. The top-up itself is written by the device endpoint. Sample data shown.</figcaption>
             </figure>
           </div>
         </div>
@@ -694,13 +661,13 @@
 
       <div class="capstone-hero">
         <h3 class="capstone-title">Community-Based Reporting &amp; Response System</h3>
-        <p class="capstone-sub">A community-based reporting and response system with geotagging for City Disaster Risk Reduction and Management Offices (CDRRMOs). It was piloted with the Biñan City CDRRMO as a model that other Philippine LGUs can reuse.</p>
+        <p class="capstone-sub">A community-based reporting and response system with geotagging for City Disaster Risk Reduction and Management Offices (CDRRMOs). It was designed and built as an academic project, with the Biñan City CDRRMO as the model case, so the same approach could be reused by other Philippine LGUs.</p>
 
         <div class="authorcard">
           <div class="row"><div class="k">authors</div><div class="v">Juan Raphael A. Dilag · Miguel Joseph M. Medina · Gian Ludvig L. Reyes</div></div>
           <div class="row"><div class="k">adviser</div><div class="v">Leonnel D. De Mesa</div></div>
           <div class="row"><div class="k">institution</div><div class="v">Mapúa Malayan Colleges Laguna · College of Computer &amp; Information Science</div></div>
-          <div class="row"><div class="k">pilot locale</div><div class="v">Biñan City CDRRMO</div></div>
+          <div class="row"><div class="k">model locale</div><div class="v">Biñan City CDRRMO</div></div>
           <div class="row"><div class="k">architecture</div><div class="v accent">4 layers · 3 apps and an admin portal on a shared Supabase backend</div></div>
         </div>
       </div>
@@ -708,7 +675,7 @@
       <!-- ---------- Capstone : Discussion ---------- -->
       <div class="subblock" id="cap-discussion">
         <div class="subblock-label">Discussion of the features</div>
-        <p>The system updates how an LGU disaster office handles incident reports and emergency dispatch. It replaces phone-hotline reporting, paper logbooks, and radio dispatch with a real-time system that works across web and mobile. Phone-based reporting often gives incomplete details, wrong locations, and slow response. The command center has no single view, and field responders have no digital navigation or clear way to report back. Each app below solves one of these problems. They all share one Supabase backend, built in four layers (presentation, application, business, and data), with PostGIS handling the map and routing data.</p>
+        <p>The system is designed to update how an LGU disaster office handles incident reports and emergency dispatch, replacing phone-hotline reporting, paper logbooks, and radio dispatch with a real-time system that works across web and mobile. Phone-based reporting often gives incomplete details, wrong locations, and slow response. The command center has no single view, and field responders have no digital navigation or clear way to report back. Each app below solves one of these problems. They all share one Supabase backend, built in four layers (presentation, application, business, and data), with PostGIS handling the map and routing data.</p>
 
         <div class="iface">
           <h4>Citizen Mobile Application <span class="badge">React Native · Expo</span></h4>
@@ -744,31 +711,27 @@
         <div class="shot-grid shot-grid--mobile">
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-citizen-onboarding.png" alt="Citizen onboarding / login"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Onboarding / login</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-citizen-onboarding.png" alt="Citizen app welcome screen with sign-in and create account">
             </div>
-            <figcaption><b>Onboarding.</b> Sign-up with Turnstile and MFA login.</figcaption>
+            <figcaption><b>Onboarding.</b> The welcome screen. Sign-up is checked by Turnstile, and login uses MFA.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-citizen-idverify.png" alt="ID verification"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">ID verification</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-citizen-idverify.png" alt="Government ID verification steps">
             </div>
-            <figcaption><b>ID verification.</b> Government-ID upload and OCR review.</figcaption>
+            <figcaption><b>ID verification.</b> The Didit check: ID capture, a selfie liveness test, then review.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-citizen-report.png" alt="Report an incident"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Report an incident</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-citizen-report.png" alt="Citizen incident report form">
             </div>
             <figcaption><b>Report.</b> The geotagged report form with media.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-citizen-tracking.png" alt="Live responder tracking"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Live tracking</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-citizen-tracking.png" alt="Report status progression with live map link">
             </div>
-            <figcaption><b>Tracking.</b> A live view of the assigned responder.</figcaption>
+            <figcaption><b>Tracking.</b> The report moving from Pending to Dispatch, with a link to the live map of the responder.</figcaption>
           </figure>
         </div>
 
@@ -776,22 +739,19 @@
         <div class="shot-grid shot-grid--web">
           <figure class="shot shot--web">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-admin-map.png" alt="Real-time incident map"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Real-time incident map</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-admin-map.png" alt="Real-time incident map">
             </div>
             <figcaption><b>Triage map.</b> The live Mapbox view of incoming reports.</figcaption>
           </figure>
           <figure class="shot shot--web">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-admin-dispatch.png" alt="Dispatch assignment"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dispatch &amp; validation</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-admin-dispatch.png" alt="Portal dashboard with the incident queue">
             </div>
-            <figcaption><b>Dispatch.</b> Check a report and assign a unit.</figcaption>
+            <figcaption><b>Dashboard.</b> The incident queue, where each report is checked and a unit assigned through Manage.</figcaption>
           </figure>
           <figure class="shot shot--web">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-admin-analytics.png" alt="Analytics dashboard"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Analytics</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-admin-analytics.png" alt="Analytics dashboard">
             </div>
             <figcaption><b>Analytics.</b> Frequency, location, and response times.</figcaption>
           </figure>
@@ -801,29 +761,25 @@
         <div class="shot-grid shot-grid--mobile">
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-responder-feed.png" alt="Dispatch feed"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Dispatch feed</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-responder-feed.png" alt="Dispatch feed">
             </div>
             <figcaption><b>Feed.</b> Real-time incoming assignments.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-responder-details.png" alt="Incident details"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Incident details</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-responder-details.png" alt="Incident details">
             </div>
             <figcaption><b>Details.</b> Full context: media, category, and location.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-responder-nav.png" alt="Turn-by-turn navigation"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Navigation</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-responder-nav.png" alt="Turn-by-turn navigation">
             </div>
             <figcaption><b>Navigation.</b> Turn-by-turn routing to the incident.</figcaption>
           </figure>
           <figure class="shot shot--mobile">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-responder-status.png" alt="Status updates"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Status loop</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-responder-status.png" alt="Assignment marked On Scene with a Resolve button">
             </div>
             <figcaption><b>Status.</b> One-tap En Route, On Scene, or Resolved.</figcaption>
           </figure>
@@ -833,8 +789,7 @@
         <div class="shot-grid shot-grid--web">
           <figure class="shot shot--web">
             <div class="shot-frame">
-              <!-- replace with: <img src="screenshots/cap-landing.png" alt="Public landing page"> -->
-              <div class="shot-ph"><span class="shot-ph-ico" aria-hidden="true">▤</span><span class="shot-ph-cap">Public landing page</span><span class="shot-ph-note">screenshot pending</span></div>
+              <img src="screenshots/cap-landing.png" alt="Public landing page">
             </div>
             <figcaption><b>Landing.</b> The public information site for the system.</figcaption>
           </figure>
